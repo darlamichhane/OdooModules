@@ -1,0 +1,116 @@
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_invoice_order_line_inherit">
+			<field name="name">account.invoice.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='account_id']"
+					position="after">
+					<field name="doctor_id" />
+				</xpath>
+
+			</field>
+		</record>
+
+		<!-- Search view of Doctor for patient count -->
+		<record id="doctor_search" model="ir.ui.view">
+			<field name="name">doctor.search</field>
+			<field name="model">account.invoice.line</field>
+			<field name="arch" type="xml">
+				<search string="Doctor">
+					<field name="doctor_id" />
+					<group string="Filter By">
+						<filter name="by_today_date" string="Today"
+							domain="[('create_date','&gt;=', datetime.datetime.combine(context_today(),
+                            datetime.time(0,0,0))), ('create_date','&lt;=', datetime.datetime.combine(context_today(),
+                             datetime.time(23,59,59)))]" />
+					</group>
+					<group string="Group By">
+						<filter name="by_doctor_name" string="Doctor" domain="[]"
+							context="{'group_by':'doctor_id'}" />
+					</group>
+					<menuitem id="sub_menu_doctor" action="action_doctor"
+						name="Patient Count" parent="sales_team.menu_sales" sequence="12" />
+
+				</search>
+			</field>
+		</record>
+
+		<!-- Tree view of Doctor -->
+		<record id="doctor_view" model="ir.ui.view">
+			<field name="name">doctor.tree</field>
+			<field name="model">doctor.setup</field>
+			<field name="priority" eval="14" />
+			<field name="arch" type="xml">
+				<tree string="Doctor">
+					<field name="name" string="Doctor Name" />
+					<field name="code" string="Code" />
+					<field name="phone" string="Contact Number" />
+					<field name="profile" string="Doctor Profile" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View Of Doctor Profiles -->
+		<record id="view_doctor_form" model="ir.ui.view">
+			<field name="name">doctor.form</field>
+			<field name="model">doctor.setup</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Doctor">
+					<sheet string="Doctor">
+						<div class="oe_button_box" name="button_box">
+							<button name="toggle_active" type="object"
+								class="oe_stat_button" icon="fa-archive">
+								<field name="active" widget="boolean_button"
+									options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+							</button>
+						</div>
+						<group>
+							<group>
+								<field name="name" string="Doctor Name"
+									placeholder="Doctor Name" />
+								<field name="phone" string="Contact Number"
+									placeholder="Contact Number" />
+								<field name="profile" string="Doctor Profile"
+									placeholder="Doctor Profile" />
+							</group>
+							<group>
+								<field name="code" string="Code" placeholder="Code" />
+								<field name="address" string="Address"
+									placeholder="Address" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action of Doctor Tree/Form -->
+		<record id="action_doctor_tree" model="ir.actions.act_window">
+			<field name="name">Doctor</field>
+			<field name="res_model">doctor.setup</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+
+		<!-- Action of Doctor -->
+		<record id="action_doctor" model="ir.actions.act_window">
+			<field name="name">Patient Count</field>
+			<field name="res_model">account.invoice.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_by_doctor_name':1,'search_default_by_today_date':1}
+			</field>
+		</record>
+
+		<menuitem id="menu_doctor" action="action_doctor_tree"
+			name="Doctor" parent="sales_team.menu_sales" sequence="12" />
+
+	</data>
+
+</odoo>

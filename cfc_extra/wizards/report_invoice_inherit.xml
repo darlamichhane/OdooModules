@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="account.report_invoice_document">
+		​
+		<div style="margin-left:5px" class="page">
+			<div align="center">
+				<h2>
+					<span
+						t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE</span>
+					<span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA</span>
+					<span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+					<span t-if="o.type == 'out_invoice' and o.state == 'cancel'">
+						INVOICE
+						<div
+							style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:400px;text-align:bottom;width:100%;">
+							<p style="font-size:100px;">CANCELLED</p>
+						</div>
+					</span>
+					<span t-if="o.type == 'out_refund'">Credit Note</span>
+					<span t-if="o.type == 'in_refund'">Debit Note</span>
+					<span t-if="o.type == 'in_invoice'">Vendor Bill</span>
+				</h2>
+			</div>
+			<div class="row mt32 mb32">
+				<div class="col-xs-6">
+					<div class="row" style="padding-left:15px;font-size:16pt;">
+						<div name="invoice_address" style="text-transform:capitalize">
+							<strong>Bill To :</strong>
+							<span t-field="o.partner_id"
+								t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+						</div>
+						<div>
+							<strong>Bill Number : </strong>
+							<t t-esc="o.number" />
+						</div>
+						<div>
+							<strong>Bill Date AD : </strong>
+							<span t-field="o.create_date" t-options='{"format": "y-MM-dd h:mm a"}' />
+						</div>
+						<div>
+							<strong>Bill Date BS : </strong>
+							<span t-field="o.nep_inv_date" t-options='{"format": "y-MM-dd"}' />
+						</div>
+						<div>
+							<strong>Source : </strong>
+							<t t-esc="o.origin" />
+						</div>
+					</div>
+				</div>
+				<div t-if="o.type == 'out_invoice' or o.type == 'out_refund'"
+					class="col-xs-6">
+					<div class="row" style="padding-left:15px;font-size:16pt;">
+						<div>
+							<strong>Age : </strong>
+							<t t-esc="o.partner_id.age" />
+						</div>
+						<div>
+							<strong>Sex : </strong>
+							<t t-esc="o.partner_id.gender" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="padding-left:15px;font-size:12pt;">
+				<div t-if="o.name">
+					<strong>Reason for Refund:</strong>
+					<p t-field="o.name" />
+				</div>
+				<div name="reference" class="col-xs-2" t-if="o.reference">
+					<strong>Reference:</strong>
+					<p t-field="o.reference" />
+				</div>
+			</div>
+			<!-- Is there a discount on at least one line? -->
+			<t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])" />
+			<table class="table table-bordered" style="font-size:14pt;">
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th t-if="o.type == 'out_invoice' or o.type == 'out_refund'"
+							class="text-center">Assign To</th>
+						<th class="hidden">Source Document</th>
+						<th class="text-right">Quantity</th>
+						<!-- <th class="text-right">Batch No</th> <th class="text-right">Expiry 
+							Date</th> -->
+						<th class="text-right">Unit Price</th>
+						<th t-if="display_discount" class="text-right">Disc.(%)</th>
+						<th class="text-right">Total Amount</th>
+					</tr>
+				</thead>
+				<tbody class="invoice_tbody">
+					<tr t-foreach="o.invoice_line_ids" t-as="l">
+						<td>
+							<span t-field="l.name" />
+						</td>
+						<td t-if="o.type == 'out_invoice' or o.type == 'out_refund'">
+							<span t-field="l.doctor_id" />
+						</td>
+						<td class="hidden">
+							<span t-field="l.origin" />
+						</td>
+						<td class="text-right">
+							<span t-field="l.quantity" />
+							<span t-field="l.uom_id" groups="product.group_uom" />
+						</td>
+						<!-- <td class="text-right"> <span t-field="l.lot_id.name"/> </td> 
+							<td class="text-right"> <span t-field="l.expiry_date"/> </td> -->
+						<td class="text-right">
+							<span t-field="l.price_unit" />
+						</td>
+						<td t-if="display_discount" class="text-right">
+							<span t-field="l.discount" />
+						</td>
+						<td class="text-right">
+							<span t-set="price_subtotal" t-value="l.price_subtotal + l.discount_line_amount" />
+							<span t-esc="price_subtotal"
+								t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row" style="font-size:14pt;">
+				<div class="col-xs-4 pull-right">
+					<table class="table table-bordered">
+						<tr class="border-black">
+							<td>
+								<strong>Subtotal</strong>
+							</td>
+							<td class="text-right">
+								<span t-set="subtotal" t-value="o.amount_untaxed + o.my_discount_amnt" />
+								<span t-esc="subtotal"
+									t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+							</td>
+						</tr>
+						<t t-foreach="o._get_tax_amount_by_group()" t-as="amount_by_group">
+							<tr>
+								<td>
+									<strong>VAT</strong>
+									<span
+										t-esc="amount_by_group[0] if len(o.tax_line_ids) > 1 else (o.tax_line_ids.tax_id.description or o.tax_line_ids.tax_id.name)" />
+								</td>
+								<td class="text-right">
+									<span t-esc="amount_by_group[2]" />
+								</td>
+							</tr>
+						</t>
+						<tr class="border-black" t-if="display_discount">
+							<td>
+								<strong>Discount</strong>
+							</td>
+							<td class="text-right">
+								<span t-field="o.my_discount_amnt" />
+							</td>
+						</tr>
+						<tr class="border-black">
+							<td>
+								<strong>Net Amount</strong>
+							</td>
+							<td class="text-right">
+								<span t-field="o.amount_total"
+									t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div style="width: 40%; float: left; padding-top: 70px;font-size:14pt;">
+				<div style="padding-top: 10px;">
+					<span t-esc="o.user_id.name"></span>
+				</div>
+				<div style="padding-top: 10px;">------------------------------  </div>
+				<div style="padding-top: 10px;">Authorized Signature </div>
+			</div>
+		</div>
+	</template>
+</odoo>

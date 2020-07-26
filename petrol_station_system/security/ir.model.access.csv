@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_token_management,token.management,model_token_management,,1,1,1,1
+access_token_management_line,token.management.line,model_token_management_line,,1,1,1,1
+access_token_sales,token.sales,model_token_sales,,1,1,1,1
+access_token_sales_line,token.sales.line,model_token_sales_line,,1,1,1,1
+access_agreement,agreement,model_agreement,,1,1,1,1
+access_sale_agreement_line,sale.agreement.line,model_sale_agreement_line,,1,1,1,1
+access_vehicle_info,vehicle.info,model_vehicle_info,,1,1,1,1

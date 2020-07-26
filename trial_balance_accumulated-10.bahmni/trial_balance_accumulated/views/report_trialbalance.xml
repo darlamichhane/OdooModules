@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (C)opyright Aadarsha Shrestha, 2019. See LICENSE for full copyright and licensing details.-->
+<odoo>
+  <template id="report_trialbalance" inherit_id="account.report_trialbalance">
+    <xpath expr="//table[1]//tr[1]//th[5]" position="replace">
+      <t t-if="not data['is_accumulated_balance']">
+        <th class="text-right">Balance</th>
+      </t>
+    </xpath>
+
+
+    <xpath expr="//tr[@t-foreach='Accounts']//td[5]" position="replace">
+      <t t-if="not data['is_accumulated_balance']">
+        <td class="text-right">
+          <span t-att-style="style" t-esc="account['balance']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+        </td>
+      </t>
+      
+      <t t-if="data['is_accumulated_balance']">
+        <t t-if="account['balance']&gt;=0">
+          <td class="text-right">
+            <span t-att-style="style" t-esc="abs(account['balance'])" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+          </td>
+
+          <td class="text-right">
+            <span t-att-style="style" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}">0.00</span>
+          </td>
+        </t>
+
+        <t t-if="account['balance']&lt;0">
+          <td class="text-right">
+            <span t-att-style="style" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}">0.00</span>
+          </td>
+
+          <td class="text-right">
+            <span t-att-style="style" t-esc="abs(account['balance'])" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+          </td>
+        </t>
+      </t>
+    </xpath>
+    
+    <xpath expr="//tr[@t-foreach='Accounts']//td[4]" position="replace">
+      <t t-if="not data['is_accumulated_balance']">
+        <td class="text-right">
+          <span t-att-style="style" t-esc="account['debit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+        </td>
+      </t>
+    </xpath>
+
+    <xpath expr="//tr[@t-foreach='Accounts']//td[3]" position="replace">
+      <t t-if="not data['is_accumulated_balance']">
+        <td class="text-right">
+          <span t-att-style="style" t-esc="account['credit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+        </td>
+      </t>
+    </xpath>
+
+
+    <xpath expr="//tr[@t-foreach='Accounts']" position="after">
+      <tr t-if="data['is_accumulated_balance']">
+        <th colspan="2" class="text-right">Total</th>
+        <th class="text-right">
+          <span t-att-style="style" t-esc="sum([abs(account['balance']) for account in Accounts if account['balance']&gt;=0])" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+        </th>
+        <th class="text-right">
+          <span t-att-style="style" t-esc="sum([abs(account['balance']) for account in Accounts if account['balance']&lt;0])" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+        </th>
+      </tr>
+    </xpath>
+  </template>
+</odoo>

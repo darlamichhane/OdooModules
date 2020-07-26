@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view"
+			id="transport_management_driver_creation_form_view">
+			<field name="name">Driver</field>
+			<field name="model">driver.info</field>
+			<field name="arch" type="xml">
+				<form string="Driver">
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button name="toggle_active" type="object"
+								class="oe_stat_button" icon="fa-archive">
+								<field name="active" widget="boolean_button"
+									options='{"terminology": "archive"}' />
+							</button>
+						</div>
+						<field name="driver_image" widget="image" class="oe_avatar" />
+						<div class="oe_title">
+							<label for="driver_id" />
+							<h1>
+								<field name="driver_id" />
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="mob_no" />
+								<field name="liscense_no" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view"
+			id="transport_management_driver_creation_tree_view">
+			<field name="name">Driver.tree</field>
+			<field name="model">driver.info</field>
+			<field name="arch" type="xml">
+				<tree string="Driver">
+					<field name="driver_id" />
+					<field name="mob_no" />
+					<field name="liscense_no" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="driver_template_kanban_view" model="ir.ui.view">
+			<field name="name">driver.info.kanban</field>
+			<field name="model">driver.info</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="driver_image" modifiers="{}" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img
+										t-att-src="kanban_image('driver.info', 'driver_image', record.id.value)" />
+								</div>
+								<div class="oe_kanban_details">
+									<strong>
+										<span t-if="record.name.value">
+											[
+											<field name="name" />
+											]
+										</span>
+										<ul>
+											<li>
+												Name :
+												<field name="driver_id" />
+											</li>
+											<li>
+												Phone Number :
+												<field name="mob_no" />
+											</li>
+										</ul>
+									</strong>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<record id="driver_template_action"
+			model="ir.actions.act_window">
+			<field name="name">Driver</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">driver.info</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="driver_template_kanban_view" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a new Driver.
+				</p>
+			</field>
+		</record>
+
+		<menuitem id="main_transportation_driver_creation_menu"
+			name="Driver" parent="sales_team.menu_sale_config"
+			action="driver_template_action" sequence="4" />
+
+	</data>
+</odoo>

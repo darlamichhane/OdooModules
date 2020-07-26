@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Bhojpur District-->
+		<record id="address_bhojpur_district_bhojpur" model="res.address.local">
+			<field name="name">Bhojpur Nagarpalika</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_shadanand" model="res.address.local">
+			<field name="name">Shadanand</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_hatuwagadhi" model="res.address.local">
+			<field name="name">Hatuwagadhi</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_ramprasadrai" model="res.address.local">
+			<field name="name">Ramprasad Rai</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_aamchok" model="res.address.local">
+			<field name="name">Aamchok</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_tyamkemaiyunm" model="res.address.local">
+			<field name="name">Tyamke Maiyunm</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_arun" model="res.address.local">
+			<field name="name">Arun</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_pauwadungma" model="res.address.local">
+			<field name="name">Pauwadungma</field>
+            <field name="district_id">1</field>
+		</record>
+        <record id="address_bhojpur_district_salpasilichho" model="res.address.local">
+			<field name="name">Salpasilichho</field>
+            <field name="district_id">1</field>
+		</record>
+
+
+<!--        Dhankuta District-->
+        <record id="address_dhankuta_district_dhankuta" model="res.address.local">
+			<field name="name">Dhankuta Nagarpalika</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_pakhribas" model="res.address.local">
+			<field name="name">Pakhribas</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_mahalaxmi" model="res.address.local">
+			<field name="name">Mahalaxmi</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_sangurigadhi" model="res.address.local">
+			<field name="name">Sangurigadhi</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_chaubise" model="res.address.local">
+			<field name="name">Chaubise</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_khalsa" model="res.address.local">
+			<field name="name">Khalsa Chhintang Shahidbhumi	</field>
+            <field name="district_id">2</field>
+		</record>
+		<record id="address_dhankuta_district_chhathar" model="res.address.local">
+			<field name="name">Chhathar Jorpati	</field>
+            <field name="district_id">2</field>
+		</record>
+
+<!--		Ilam District-->
+		<record id="address_ilam_district_ilam" model="res.address.local">
+			<field name="name">Ilam Nagarpalika</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_deumai" model="res.address.local">
+			<field name="name">Deumai</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_mai" model="res.address.local">
+			<field name="name">Mai</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_suryodaya" model="res.address.local">
+			<field name="name">Suryodaya</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_phakphokthum" model="res.address.local">
+			<field name="name">Phakphokthum</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_jogmai" model="res.address.local">
+			<field name="name">Mai Jogmai</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_chulachuli" model="res.address.local">
+			<field name="name">Chulachuli</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_rong" model="res.address.local">
+			<field name="name">Rong</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_mangsebung" model="res.address.local">
+			<field name="name">Mangsebung</field>
+            <field name="district_id">3</field>
+		</record>
+		<record id="address_ilam_district_sandakpur" model="res.address.local">
+			<field name="name">Sandakpur</field>
+            <field name="district_id">3</field>
+		</record>
+
+<!--		Jhapa District-->
+		<record id="address_jhapa_district_jhapa" model="res.address.local">
+			<field name="name">Jhapa Nagarpalika</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_arjundhara" model="res.address.local">
+			<field name="name">Arjundhara</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_kachankawal" model="res.address.local">
+			<field name="name">Kachankawal</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_kamal" model="res.address.local">
+			<field name="name">Kamal</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_gauradaha" model="res.address.local">
+			<field name="name">Gauradaha</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_gauriganj" model="res.address.local">
+			<field name="name">Gauriganj</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_damak" model="res.address.local">
+			<field name="name">Damak</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_barhadasi" model="res.address.local">
+			<field name="name">Barhadasi</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_buddhashanti" model="res.address.local">
+			<field name="name">Buddhashanti</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_mechinagar" model="res.address.local">
+			<field name="name">Mechinagar</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_birtamod" model="res.address.local">
+			<field name="name">Birtamod</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_shivasataxi" model="res.address.local">
+			<field name="name">Shivasataxi</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_haldibari" model="res.address.local">
+			<field name="name">Haldibari</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_kankai" model="res.address.local">
+			<field name="name">Kankai</field>
+            <field name="district_id">4</field>
+		</record>
+		<record id="address_jhapa_district_bhadrapur" model="res.address.local">
+			<field name="name">Bhadrapur</field>
+            <field name="district_id">4</field>
+		</record>
+
+<!--		Khotang District-->
+		<record id="address_khotang_district_khotehang" model="res.address.local">
+			<field name="name">Khotehang</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_diprung" model="res.address.local">
+			<field name="name">Diprung</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_lamidanda" model="res.address.local">
+			<field name="name">Lamidanda</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_ainselukhark" model="res.address.local">
+			<field name="name">Ainselukhark</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_kepilasagadhi" model="res.address.local">
+			<field name="name">Kepilasagadhi</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_jantedhunga" model="res.address.local">
+			<field name="name">Jantedhunga</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_barhapokhari" model="res.address.local">
+			<field name="name">Barhapokhari</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_rupakot" model="res.address.local">
+			<field name="name">Rupakot Majhuwagadhi</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_sakela" model="res.address.local">
+			<field name="name">Sakela</field>
+            <field name="district_id">5</field>
+		</record>
+		<record id="address_khotang_district_halesi" model="res.address.local">
+			<field name="name">Halesi Tuwachung</field>
+            <field name="district_id">5</field>
+		</record>
+
+<!--		Morang District-->
+		<record id="address_morang_district_biratnagar" model="res.address.local">
+			<field name="name">Biratnagar</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_haraicha" model="res.address.local">
+			<field name="name">Sundar Haraicha</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_belbari" model="res.address.local">
+			<field name="name">Belbari</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_sanischare" model="res.address.local">
+			<field name="name">Pathari-Sanischare</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_urlabari" model="res.address.local">
+			<field name="name">Urlabari</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_rangeli" model="res.address.local">
+			<field name="name">Rangeli</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_letang" model="res.address.local">
+			<field name="name">Letang Bhogateni</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_ratuwamai" model="res.address.local">
+			<field name="name">Ratuwamai</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_kerabari" model="res.address.local">
+			<field name="name">Kerabari</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_sunabarshi" model="res.address.local">
+			<field name="name">Sunabarshi</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_miklajung" model="res.address.local">
+			<field name="name">Miklajung</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_kanepokhari" model="res.address.local">
+			<field name="name">Kanepokhari</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_budiganga" model="res.address.local">
+			<field name="name">Budiganga</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_gramthan" model="res.address.local">
+			<field name="name">Gramthan</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_katahari" model="res.address.local">
+			<field name="name">Katahari</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_dhanpalthan" model="res.address.local">
+			<field name="name">Dhanpalthan</field>
+            <field name="district_id">6</field>
+		</record>
+		<record id="address_morang_district_jahada" model="res.address.local">
+			<field name="name">Jahada</field>
+            <field name="district_id">6</field>
+		</record>
+
+<!--		Okhaldhunga District-->
+		<record id="address_okhaldhunga_district_siddhicharan" model="res.address.local">
+			<field name="name">Siddhicharan</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_sunkoshi" model="res.address.local">
+			<field name="name">Sunkoshi</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_likhu" model="res.address.local">
+			<field name="name">Likhu</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_molung" model="res.address.local">
+			<field name="name">Molung</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_manebhanjyang" model="res.address.local">
+			<field name="name">Manebhanjyang</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_chisankhugadhi" model="res.address.local">
+			<field name="name">Chisankhugadhi</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_champadevi" model="res.address.local">
+			<field name="name">Champadevi</field>
+            <field name="district_id">7</field>
+		</record>
+		<record id="address_okhaldhunga_district_Khijidemba" model="res.address.local">
+			<field name="name">Khijidemba</field>
+            <field name="district_id">7</field>
+		</record>
+
+<!--		Panchthar District-->
+		<record id="address_panchthar_district_kummayak" model="res.address.local">
+			<field name="name">Kummayak</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_tumbewa" model="res.address.local">
+			<field name="name">Tumbewa</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_falelung" model="res.address.local">
+			<field name="name">Falelung</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_fagunanda" model="res.address.local">
+			<field name="name">Fagunanda</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_phidim" model="res.address.local">
+			<field name="name">Phidim</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_Miklajung" model="res.address.local">
+			<field name="name">Miklajung</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_yangwarak" model="res.address.local">
+			<field name="name">Yangwarak</field>
+            <field name="district_id">8</field>
+		</record>
+		<record id="address_panchthar_district_Hilihang" model="res.address.local">
+			<field name="name">Hilihang</field>
+            <field name="district_id">8</field>
+		</record>
+
+<!--		Shankhuwasabha District-->
+		<record id="address_shankhuwasabha_district_chichila" model="res.address.local">
+			<field name="name">Chichila</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_chainpur" model="res.address.local">
+			<field name="name">Chainpur</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_dharmadevi" model="res.address.local">
+			<field name="name">Dharmadevi</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_sabhapokhari" model="res.address.local">
+			<field name="name">Sabhapokhari</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_silichong" model="res.address.local">
+			<field name="name">Silichong</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_khandbari" model="res.address.local">
+			<field name="name">Khandbari</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_panchkhapan" model="res.address.local">
+			<field name="name">Panchkhapan</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_bhotkhola" model="res.address.local">
+			<field name="name">Bhotkhola</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_makalu" model="res.address.local">
+			<field name="name">Makalu</field>
+            <field name="district_id">9</field>
+		</record>
+		<record id="address_shankhuwasabha_district_madi" model="res.address.local">
+			<field name="name">Madi</field>
+            <field name="district_id">9</field>
+		</record>
+
+<!--		Solukhumbu District-->
+		<record id="address_solukhumbu_district_khumbupasanglahmu" model="res.address.local">
+			<field name="name">Khumbupasanglahmu</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_dudhkoshi" model="res.address.local">
+			<field name="name">Dudhkoshi</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_dudhkaushika" model="res.address.local">
+			<field name="name">Dudhkaushika</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_nechasalyan" model="res.address.local">
+			<field name="name">Nechasalyan</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_mahakulung" model="res.address.local">
+			<field name="name">Mahakulung</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_likhupike" model="res.address.local">
+			<field name="name">Likhu pike</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_sotang" model="res.address.local">
+			<field name="name">Sotang</field>
+            <field name="district_id">10</field>
+		</record>
+		<record id="address_solukhumbu_district_solu" model="res.address.local">
+			<field name="name">Solu Dudhakunda</field>
+            <field name="district_id">10</field>
+		</record>
+
+<!--		Sunsari District-->
+		<record id="address_sunsari_district_itahari" model="res.address.local">
+			<field name="name">Itahari</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_inaruwa" model="res.address.local">
+			<field name="name">Inaruwa</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_koshi" model="res.address.local">
+			<field name="name">Koshi</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_gadhi" model="res.address.local">
+			<field name="name">Gadhi</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_duhabi" model="res.address.local">
+			<field name="name">Duhabi</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_dewanganj" model="res.address.local">
+			<field name="name">Dewanganj</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_dharan" model="res.address.local">
+			<field name="name">Dharan</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_barha" model="res.address.local">
+			<field name="name">Barha</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_barju" model="res.address.local">
+			<field name="name">Barju</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_bhokraha" model="res.address.local">
+			<field name="name">Bhokraha</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_ramdhuni" model="res.address.local">
+			<field name="name">Ramdhuni</field>
+            <field name="district_id">11</field>
+		</record>
+		<record id="address_sunsari_district_harinagara" model="res.address.local">
+			<field name="name">Harinagara</field>
+            <field name="district_id">11</field>
+		</record>
+
+<!--		Taplejung District-->
+		<record id="address_taplejung_district_Aathrai" model="res.address.local">
+			<field name="name">Aathrai Tribeni</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_phaktanglung" model="res.address.local">
+			<field name="name">Phaktanglung</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_phungling" model="res.address.local">
+			<field name="name">Phungling</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_mikwakhola" model="res.address.local">
+			<field name="name">Mikwakhola</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_meringden" model="res.address.local">
+			<field name="name">Meringden</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_maiwakhola" model="res.address.local">
+			<field name="name">Maiwakhola</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_yangwarak" model="res.address.local">
+			<field name="name">Yangwarak</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_sidingba" model="res.address.local">
+			<field name="name">Sidingba</field>
+            <field name="district_id">12</field>
+		</record>
+		<record id="address_taplejung_district_sirijangha" model="res.address.local">
+			<field name="name">Sirijangha</field>
+            <field name="district_id">12</field>
+		</record>
+
+<!--		Terhathum District-->
+		<record id="address_terhathum_district_aathrai" model="res.address.local">
+			<field name="name">Aathrai</field>
+            <field name="district_id">13</field>
+		</record>
+		<record id="address_terhathum_district_chhathar" model="res.address.local">
+			<field name="name">Chhathar</field>
+            <field name="district_id">13</field>
+		</record>
+		<record id="address_terhathum_district_phedap" model="res.address.local">
+			<field name="name">Phedap</field>
+            <field name="district_id">13</field>
+		</record>
+		<record id="address_terhathum_district_menchayayam" model="res.address.local">
+			<field name="name">Menchayayam</field>
+            <field name="district_id">13</field>
+		</record>
+		<record id="address_terhathum_district_myanglung" model="res.address.local">
+			<field name="name">Myanglung</field>
+            <field name="district_id">13</field>
+		</record>
+		<record id="address_terhathum_district_laligurans" model="res.address.local">
+			<field name="name">Laligurans</field>
+            <field name="district_id">13</field>
+		</record>
+
+<!--		Udaypur District-->
+		<record id="address_udaypur_district_udaypurgadhi" model="res.address.local">
+			<field name="name">Udaypurgadhi</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_katari" model="res.address.local">
+			<field name="name">Katari</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_chaudandigadhi" model="res.address.local">
+			<field name="name">Chaudandigadhi</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_tapli" model="res.address.local">
+			<field name="name">Tapli</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_triyuga" model="res.address.local">
+			<field name="name">Triyuga</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_ratuwamai" model="res.address.local">
+			<field name="name">Ratuwamai</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_belaka" model="res.address.local">
+			<field name="name">Belaka</field>
+            <field name="district_id">14</field>
+		</record>
+		<record id="address_udaypur_district_sunkoshi" model="res.address.local">
+			<field name="name">Sunkoshi</field>
+            <field name="district_id">14</field>
+		</record>
+		
+    </data>
+</odoo>

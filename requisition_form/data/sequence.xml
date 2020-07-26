@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<!-- Sequences for requisition form -->
+		<record id="seq_requisition_form" model="ir.sequence">
+			<field name="name">Requisition Sequence</field>
+			<field name="code">requisition.form.sequence</field>
+			<field name="prefix">RF</field>
+			<field name="padding">4</field>
+			<field name="company_id" eval="False" />
+		</record>
+
+	</data>
+</odoo>

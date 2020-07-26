@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+		<menuitem id="menu_petrol_station" name="PSMS" sequence="1" groups="petrol_station_system.user,base.group_erp_manager"/>
+
+        <!--Menu-->
+        <menuitem id="menu_petrol_station_dashboard" name="Petrol Station System" parent="menu_petrol_station" sequence="5"/>
+        <menuitem id="menu_petrol_station_management" name="Management" parent="menu_petrol_station" sequence="10"/>
+        <menuitem id="menu_petrol_station_config" name="Configuration" parent="menu_petrol_station" sequence="15"/>
+        <menuitem id="menu_petrol_station_reports" name="Reports" parent="menu_petrol_station" sequence="20" />
+    </data>
+</odoo>

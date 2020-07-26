@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_token_receipt">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="page">
+						<div align="right">
+							<b style="font-size:10px">Ph.No : 021-460865</b><br/>
+						</div>
+						<div align="center">
+							<b style="font-size:20px">AB Petroliums Pvt. Ltd.</b><br/>
+							<b style="font-size:16px">Kanchanbari, Biratnagar-4</b><br/>
+							<b style="font-size:16px">Token / Credit Receipt</b><br/>
+						</div>
+						<div align="right">
+							<b style="font-size:10px">Date: <span t-field="o.claim_date" /></b><br/>
+						</div>
+							<div class="col-xs-12">
+								<table class="table table-bordered col-xs-6">
+									<tr>
+										<td width="3%" align="center">
+											<b>S.N </b>
+										</td>
+										<td width="18%" align="center">
+											<b> Description </b>
+										</td>
+										<td width="5%" align="center">
+											<b>Order Qty </b>
+										</td>
+										<td width="5%" align="center">
+											<b>Deliver Qty </b>
+										</td>
+										<td width="5%" align="center">
+											<b>Price </b>
+										</td>
+										<td width="10%" align="center">
+											<b>Amount </b>
+										</td>
+									</tr>
+									<tr t-foreach="o.token_sales_ids" t-as="l">
+										<td><t t-esc="l_index+1" /></td>
+										<td><t t-esc="l.product_id.name" /></td>
+										<td><t t-esc="l.order_qty"/></td>
+										<td><t t-esc="l.product_qty"/></td>
+										<td><t t-esc="l.price_unit"/></td>
+										<td><t t-esc="l.price_total"/></td>
+									</tr>
+								</table>
+							</div>
+						<div class="col-xs-12">
+							<div class="col-xs-6" align="left">
+								<b style="font-size:13px">Buyer</b>
+							</div>
+							<div class="col-xs-6" align="right">
+								<b style="font-size:13px">Seller</b>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

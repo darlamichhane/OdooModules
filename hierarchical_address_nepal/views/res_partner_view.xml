@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="street" position="after">
+                <field name="address_state" placeholder="State eg. Province 1" options='{"no_create": True,"no_open": True}'/>
+                <field name="address_district" placeholder="District eg. Morang" options='{"no_create": True,"no_open": True}'/>
+                <field name="address_local" placeholder="Municipality eg. Biratnagar" options='{"no_create": True,"no_open": True}'/>
+                <field name="ward_no" placeholder="Ward no. eg. 12"/>
+                <field name="street_name" placeholder="Street Name eg. Hatiya"/>
+
+            </field>
+
+            <field name="street" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="street2" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="city" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="state_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="zip" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="country_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

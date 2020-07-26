@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report id="action_report_journal"
+			model="report.journal_qweb.report_journal"
+			string="Cash Journal Report" report_type="qweb-pdf"
+			name="journal_qweb.report_journal" file="journal_qweb.report_journal" />
+	</data>
+</odoo>

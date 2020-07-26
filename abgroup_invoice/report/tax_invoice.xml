@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+			id="report_tax_invoice"
+			model="account.invoice"
+			string="Tax Invoice Report"
+			report_type="qweb-pdf"
+			name="abgroup_invoice.invoice_template_report_id"
+			file="abgroup_invoice.invoice_template_report_id" />
+
+		<report
+            id="invoice_action_report_duplicate"
+            model="account.invoice"
+            string="Duplicates"
+            report_type="qweb-pdf"
+            name="abgroup_invoice.invoice_report_duplicate_main"
+            file="abgroup_invoice.invoice_report_duplicate_main"
+            attachment_use="False"
+        />
+
+		<record id="paperformat_abgroup_invoice" model="report.paperformat">
+			<field name="name">US Letter</field>
+			<field name="default" eval="True" />
+			<field name="format">custom</field>
+			<field name="page_height">297</field>
+			<field name="page_width">210</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">40</field>
+			<field name="margin_bottom">32</field>
+			<field name="margin_left">7</field>
+			<field name="margin_right">7</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">32</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="abgroup_invoice.report_tax_invoice"
+			model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="abgroup_invoice.paperformat_abgroup_invoice" />
+		</record>
+
+		<template id="external_layout_invoice">
+			<t t-if="o and 'company_id' in o">
+				<t t-set="company" t-value="o.company_id"></t>
+			</t>
+			<t t-if="not o or not 'company_id' in o">
+				<t t-set="company" t-value="res_company"></t>
+			</t>
+			<t t-call="abgroup_invoice.external_layout_invoice_header" />
+			<t t-raw="0" />
+		</template>
+
+		  <template id="external_layout_invoice_header">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-12" style="font-size:16px">
+                        <div class="col-xs-6" align="left">
+                            <b style="font-size:40px">Global Auto Point</b><br/>
+							<t style="font-size:10px">(Authorized Servicing Centre of TOYOTA Vehicles)<br/></t>
+							<t>Airport mode, Biratnagar-4 <br/>Tel:021-463570,460965<br/> Email:gap@gmail.com <br/></t>
+                        </div>
+
+                        <div class="col-xs-3" align="center">
+                            <!--<b style="font-size:25px">
+                                <u></u>
+                            </b>
+                            <br/>-->
+                        </div>
+                        <div class="col-xs-3" align="right">
+                            <img src='/abgroup_invoice/static/src/img/logo-toyota.png' style="max-height:100px;max-width:100px;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		  </template>
+
+	</data>
+</odoo>

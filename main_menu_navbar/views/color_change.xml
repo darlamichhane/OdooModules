@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="less_helpers" name="web less helpers" inherit_id="web.less_helpers" priority='15'>
+        <xpath expr="//link[@href='/web/static/src/less/variables.less']" position="replace">
+            <link rel="stylesheet" type="text/less" href="/main_menu_navbar/static/src/less/variables.less"/>
+        </xpath>
+    </template>
+</odoo>
+

@@ -1,0 +1,89 @@
+<data>
+        <record id="view_reg_pay_wizard" model="ir.ui.view">
+            <field name="name">reg.pay.form</field>
+            <field name="model">reg.pay</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Register Payment with TDS">
+                    	<field name="state" invisible="1" />
+                    <div states="choose">
+                    <group colspan="4" >
+                     
+                        <field name="message" readonly="1"/>  
+                            </group> 
+                            <footer states="choose">
+                            <button  special="cancel" string="OK"/>
+                            </footer>
+                        </div>
+
+                         <div states="get">
+                          <group colspan="4" >
+                            <field name="journal_id" widget="selection"/>
+                            <field name="payment_account_id" options="{'no_create': True, 'no_open': True}"/>
+                            <!-- <field name="invoice" options="{'no_create': True, 'no_open': True}"/>                     -->
+                            
+                                </group>
+                                <group>
+                                <field name="partner_id" />
+                                <field name="flag" invisible="1"/>
+                                <field name="invoice"  widget="many2many_tags" options="{'no_create': True, 'no_open': True}" attrs="{'readonly':[('flag','=',True)]}"/>  
+                                    <field name="payment_date"/>
+                                    <field name="communication"/>
+                                    <!-- <field name="invoice"  options="{'no_create': True, 'no_open': True}" readonly="1"/>  -->
+                                    
+                                </group>
+                                 <button string="Show Lines" class="btn-primary"
+						            name="show_lines_purchase" type="object" />
+                            <field name="invoice_line_ids">
+                                <tree string="Products" editable="bottom">
+                                    <field name="inv_id" readonly="1" />
+                                    <field name="product_id" readonly="1" />
+                                    <field name="quantity" readonly="1" />
+                                    <field name="price_unit" readonly="1" />
+                                    <field name="tax_lebel" readonly="1" />
+                                    <field name="tds_percent" />
+                                    <field name="price_subtotal" widget="monetary" />
+                                </tree>
+					</field>
+                            <group>
+                            <!-- <label for="amount"/>
+                            <div name="amount_div" class="o_row"> -->
+                                        <field name="residual" readonly="1"/>
+                                        <field name="amount"/>
+                                        <field name="currency_id" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_currency"/>
+                            <!-- </div> -->
+                            		<!-- <field name="tds_percent"/> -->
+                                <field name="tds_amnt" readonly="1"/>
+                                <field name="tds_amnt_to_pay" readonly="1"/>
+                                
+                                <field name="tds_account_id" options="{'no_create': True, 'no_open': True}" attrs="{'required':[('tds_amnt','>', 0.0)]}"/>
+                        <!-- <separator string="Select terminals to assign" colspan="4"/> -->
+                        
+                        <!-- <newline/> -->
+                    </group>
+                    <separator string="" colspan="4" />
+                    <!-- <group colspan="4" col="6"> -->
+                    <footer states="get">
+                        <button   name="payment_done" string="Make Payment" type="object" class="oe_highlight"/>
+                        <button  special="cancel" string="Cancel"/>
+                    </footer>
+                    <!-- </group> -->
+                    </div> 
+                   
+               </form>
+            </field>
+        </record>
+
+
+        <record id="action_reg_pay" model="ir.actions.act_window">
+            <field name="name">Make Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reg.pay</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_reg_pay_wizard"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="Purchase Payment"
+		id="sub_pur_payment" parent="account.menu_finance_reports"
+		sequence="103" action="action_reg_pay" />
+    </data>

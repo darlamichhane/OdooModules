@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="tax_invoice_template_report_first">
+			<t t-call="transport_system.external_layout_invoice">
+				<div class="page">
+					<div class="watermark" style="position:absolute;opacity:0.85;font-size:3em;width:100%;text-align:center;z-index:1000;">
+        					<img t-att-src="'data:image/png;base64,'+ o.company_id.logo"/>
+					</div>
+					<div class="row" style="font-size:13px">
+						<center>
+							<h4>
+								<b t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">TAX INVOICE</b>
+								<b t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</b>
+								<span t-if="o.type == 'out_invoice' and o.state == 'cancel'">INVOICE
+								<div style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:400px;text-align:bottom;width:100%;">
+									<p style="font-size:100px;">CANCELLED</p>
+								</div></span>
+								<b t-if="o.type == 'out_refund'">Credit Note</b>
+							</h4>
+						</center>
+						<div class="col-xs-12">
+							<div class="col-xs-6" align="left" style="padding-bottom:5px;margin-left:-8px;">
+								<b> Customer Name :  </b><t t-esc="o.partner_id.name" /><br />
+								<b> Address :  </b><t t-esc="o.partner_id.street_name" /><br />
+								<b> PAN Number : </b><t t-esc="o.partner_id.pan_number" />
+							</div>
+							<div class="col-xs-6" align="right" style="padding-bottom:5px">
+								<b> Invoice No. : </b><t t-esc="o.number" /><br />
+								<b> Invoice Date AD : </b><span t-field="o.date_invoice" /><br />
+								<b> Invoice Date BS :</b><span t-field="o.nep_inv_date"
+									t-options='{"format": "y-MM-dd"}' />
+							</div>
+							<table class="table table-bordered">
+								<tr>
+									<td colspan="5">
+										<div class="col-xs-12" style="margin-left:-15px;">
+											<b> Consignor Name : </b><t t-esc="o.consignor_id.name" />
+										</div>
+										<div style="margin-left:-15px;" class="col-xs-6">
+											<b> Address :</b><t t-esc="o.consignor_id.street_name" />
+										</div>
+										<div style="margin-right:-15px;" class="col-xs-6">
+											<b> PAN No :</b><t t-esc="o.consignor_id.pan_number" />
+										</div>
+									</td>
+									<td colspan="2">
+										<center>
+											<b>From </b><br /><t t-esc="o.send_from.name" />
+										</center>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="5">
+										<div class="col-xs-12" style="margin-left:-15px;">
+											<b> Consignee Name : </b><t t-esc="o.consignee_id.name" /><br />
+										</div>
+										<div style="margin-left:-15px;" class="col-xs-6">
+											<b> Address :</b><t t-esc="o.consignee_id.street_name" />
+										</div>
+										<div style="margin-right:-15px;" class="col-xs-6">
+											<b> PAN No :</b><t t-esc="o.consignee_id.pan_number" />
+										</div>
+									</td>
+									<td colspan="2">
+										<center>
+											<b>To </b><br /><t t-esc="o.send_to.name" />
+										</center>
+									</td>
+								</tr>
+								<tr>
+									<td width="2%" height="1%"><b>S.N </b></td>
+									<td width="46%" height="1%" align="center"><b> Description </b></td>
+									<td width="6%" height="1%"><b>Quantity </b></td>
+									<td width="6%" height="1%"><b>UoM </b></td>
+									<td width="12%" height="1%"><b>Amount</b></td>
+									<td width="22%" height="1%" align="center"><b>Total Amount</b></td>
+									<td width="6%" height="1%" align="center"><b>Remarks </b></td>
+								</tr>
+								<tr t-foreach="o.invoice_line_ids" t-as="l">
+									<td><t t-esc="l_index+1" /></td>
+									<div style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(330deg);-webkit-transform:rotate(330deg);top:160px;text-align:bottom;width:100%;">
+										<p>सुरछित ढुवानीको लागि मालको विमा पार्टी स्वय आफैले गराउनु पर्नेछ ।</p>
+									</div>
+									<td><t t-esc="l.name" /></td>
+									<td><span t-field="l.quantity" /></td>
+									<td><span t-field="l.uom_id" /></td>
+									<td align="right"><span t-field="l.price_unit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td align="right"><span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan="3"><b> Bill No :</b><t t-esc="o.bill_no" /></td>
+									<td colspan="2" align="right"><b>Total </b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td rowspan="6">
+										<div style="transform:rotate(330deg);-webkit-transform:rotate(330deg);text-align:center;margin-top:60px">
+											<b t-if="o.pay_status == 'due'">Dues</b>
+											<b t-if="o.pay_status == 'to_pay'">To Pay</b>
+											<b t-if="o.pay_status == 'paid'">Paid</b>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><b> Bill Amount :</b><t t-esc="o.bill_amount" /></td>
+									<td colspan="2" align="right"><b>ST Charge </b></td>
+									<td align="right"><span t-field="o.service_charge_amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><b>Booked Under or OWNER'S RISK</b></td>
+									<td colspan="2" align="right"><b>Untaxed Amount</b></td>
+									<td align="right"><span t-set="subtotal" t-value="o.amount_untaxed + o.service_charge_amount" /> <span t-esc="subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' /></td>
+								</tr>
+								<tr>
+									<td rowspan="3" colspan="3"><b>Amount in words  </b><span t-esc="o.amount_to_text(o.amount_total, 'NPR')" /></td>
+
+								</tr>
+								<tr>
+
+									<td colspan="2" align="right"><b>13 % VAT </b></td>
+									<td align="right"><span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>Net Amount </b></td>
+									<td align="right"><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+							</table>
+							<div class="col-xs-12" t-if="o.load_type == 'full'" style="padding-left:8px;padding-bottom:5px;margin-top:-10px;">
+								<div class="col-xs-6" align="left">
+									<b> Vehicle No. : </b><t t-esc="o.vehicle_id.vehicle_no" /><br />
+									<b> Owner's Name :</b><t t-esc="o.vehicle_id.owner_id.name" />
+								</div>
+								<div class="col-xs-6" align="left">
+									<b> Driver Name : </b><t t-esc="o.driver_id.name" /><br />
+									<b> Mobile No. :</b><t t-esc="o.driver_id.mobile_phone" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<template id="tax_invoice_template_report_second">
+			<t t-call="transport_system.external_layout_invoice">
+				<div class="page">
+					<div class="watermark" style="position:absolute;opacity:0.85;font-size:3em;width:100%;text-align:center;z-index:1000;">
+        					<img t-att-src="'data:image/png;base64,'+ o.company_id.logo"/>
+					</div>
+					<div class="row" style="font-size:13px">
+						<center>
+							<h4>
+								<b t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE</b>
+								<b t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</b>
+								<span t-if="o.type == 'out_invoice' and o.state == 'cancel'">INVOICE
+								<div style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:400px;text-align:bottom;width:100%;">
+									<p style="font-size:100px;">CANCELLED</p>
+								</div></span>
+								<b t-if="o.type == 'out_refund'">Credit Note</b>
+							</h4>
+						</center>
+						<div class="col-xs-12">
+							<div class="col-xs-6" align="left" style="padding-bottom:5px;margin-left:-8px;">
+								<b> Customer Name :  </b><t t-esc="o.partner_id.name" /><br />
+								<b> Address :  </b><t t-esc="o.partner_id.street_name" /><br />
+								<b> PAN Number : </b><t t-esc="o.partner_id.pan_number" />
+							</div>
+							<div class="col-xs-6" align="right" style="padding-bottom:5px">
+								<b> Invoice No. : </b><t t-esc="o.number" /><br />
+								<b> Invoice Date AD : </b><span t-field="o.date_invoice" /><br />
+								<b> Invoice Date BS :</b><span t-field="o.nep_inv_date"
+									t-options='{"format": "y-MM-dd"}' />
+							</div>
+							<table class="table table-bordered">
+								<tr>
+									<td colspan="5">
+										<div class="col-xs-12" style="margin-left:-15px;">
+											<b> Consignor Name : </b><t t-esc="o.consignor_id.name" />
+										</div>
+										<div style="margin-left:-15px;" class="col-xs-6">
+											<b> Address :</b><t t-esc="o.consignor_id.street_name" />
+										</div>
+										<div style="margin-right:-15px;" class="col-xs-6">
+											<b> PAN No :</b><t t-esc="o.consignor_id.pan_number" />
+										</div>
+									</td>
+									<td colspan="2">
+										<center>
+											<b>From </b><br /><t t-esc="o.send_from.name" />
+										</center>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="5">
+										<div class="col-xs-12" style="margin-left:-15px;">
+											<b> Consignee Name : </b><t t-esc="o.consignee_id.name" /><br />
+										</div>
+										<div style="margin-left:-15px;" class="col-xs-6">
+											<b> Address :</b><t t-esc="o.consignee_id.street_name" />
+										</div>
+										<div style="margin-right:-15px;" class="col-xs-6">
+											<b> PAN No :</b><t t-esc="o.consignee_id.pan_number" />
+										</div>
+									</td>
+									<td colspan="2">
+										<center>
+											<b>To </b><br /><t t-esc="o.send_to.name" />
+										</center>
+									</td>
+								</tr>
+								<tr>
+									<td width="2%" height="1%"><b>S.N </b></td>
+									<td width="46%" height="1%" align="center"><b> Description </b></td>
+									<td width="6%" height="1%"><b>Quantity </b></td>
+									<td width="6%" height="1%"><b>UoM </b></td>
+									<td width="12%" height="1%"><b>Amount</b></td>
+									<td width="22%" height="1%" align="center"><b>Total Amount</b></td>
+									<td width="6%" height="1%" align="center"><b>Remarks </b></td>
+								</tr>
+								<tr t-foreach="o.invoice_line_ids" t-as="l">
+									<td><t t-esc="l_index+1" /></td>
+									<div style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(330deg);-webkit-transform:rotate(330deg);top:160px;text-align:bottom;width:100%;">
+										<p>सुरछित ढुवानीको लागि मालको विमा पार्टी स्वय आफैले गराउनु पर्नेछ ।</p>
+									</div>
+									<td><t t-esc="l.name" /></td>
+									<td><span t-field="l.quantity" /></td>
+									<td><span t-field="l.uom_id" /></td>
+									<td align="right"><span t-field="l.price_unit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td align="right"><span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan="3"><b> Bill No :</b><t t-esc="o.bill_no" /></td>
+									<td colspan="2" align="right"><b>Total </b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td rowspan="6">
+										<div style="transform:rotate(330deg);-webkit-transform:rotate(330deg);text-align:center;margin-top:60px">
+											<b t-if="o.pay_status == 'due'">Dues</b>
+											<b t-if="o.pay_status == 'to_pay'">To Pay</b>
+											<b t-if="o.pay_status == 'paid'">Paid</b>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><b> Bill Amount :</b><t t-esc="o.bill_amount" /></td>
+									<td colspan="2" align="right"><b>ST Charge </b></td>
+									<td align="right"><span t-field="o.service_charge_amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><b>Booked Under or OWNER'S RISK</b></td>
+									<td colspan="2" align="right"><b>Untaxed Amount</b></td>
+									<td align="right"><span t-set="subtotal" t-value="o.amount_untaxed + o.service_charge_amount" /> <span t-esc="subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' /></td>
+								</tr>
+								<tr>
+									<td rowspan="3" colspan="3"><b>Amount in words  </b><span t-esc="o.amount_to_text(o.amount_total, 'NPR')" /></td>
+
+								</tr>
+								<tr>
+
+									<td colspan="2" align="right"><b>13 % VAT </b></td>
+									<td align="right"><span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>Net Amount </b></td>
+									<td align="right"><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+							</table>
+							<div class="col-xs-12" t-if="o.load_type == 'full'" style="padding-left:8px;padding-bottom:5px;margin-top:-10px;">
+								<div class="col-xs-6" align="left">
+									<b> Vehicle No. : </b><t t-esc="o.vehicle_id.vehicle_no" /><br />
+									<b> Owner's Name :</b><t t-esc="o.vehicle_id.owner_id.name" />
+								</div>
+								<div class="col-xs-6" align="left">
+									<b> Driver Name : </b><t t-esc="o.driver_id.name" /><br />
+									<b> Mobile No. :</b><t t-esc="o.driver_id.mobile_phone" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<template id="tax_invoice_template_report_id">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="transport_system.tax_invoice_template_report_first" t-lang="o.name" />
+					<t t-call="transport_system.tax_invoice_template_report_second" t-lang="o.name" />
+					<t t-call="transport_system.tax_invoice_template_report_second" t-lang="o.name" />
+					<t t-call="transport_system.tax_invoice_template_report_second" t-lang="o.name" />
+				</t>
+			</t>
+		</template>
+
+		<template id="tax_invoice_report_duplicate_first" inherit_id="transport_system.tax_invoice_template_report_first" primary="True">
+			<xpath expr="//h4" position="replace">
+				<h5>
+					<span>
+						<div
+							style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:250px;text-align:bottom;width:100%;">
+							<p style="font-size:65px;">Copy of Original <t t-esc="o.count" /></p>
+						</div>
+					</span>
+					<b t-if="o.type == 'out_refund'">REFUND</b>
+					<b t-if="o.type == 'out_invoice'">TAX INVOICE</b>
+				</h5>
+			</xpath>
+		</template>
+
+		<template id="tax_invoice_report_duplicate_main">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="transport_system.tax_invoice_report_duplicate_first" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</odoo>

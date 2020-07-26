@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report id="action_report_ledger_daybook" 
+				model="report.ledger_daybook.report_ledger_daybook"
+				string="General Ledger Report" 
+				report_type="qweb-pdf"
+				name="ledger_daybook.report_ledger_daybook" 
+				file="ledger_daybook.report_ledger_daybook" />
+	</data>
+</odoo>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="token_management_form">
+			<field name="model">token.management</field>
+			<field name="name">Token Management</field>
+			<field name="arch" type="xml">
+				<form string="Generate Tokens">
+					<header>
+						<button name="show_lines_token" states="draft" type="object" icon="fa-gears" string="Generate Tokens" class="btn-primary"/>
+<!--						<button name="action_confirm" states="draft" string="Confirm" type="object" class="btn-primary"/>-->
+						<button name="action_approved" states="open" string="Validate" type="object" icon="fa-caret-right" class="btn-primary"/>
+                    	<button name="action_print" string="Print" type="object" icon="fa-print" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','done'))]}" groups="base.group_user"/>
+						<button name="action_cancel" states="draft" string="Cancel" icon="fa-trash-o" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<label string="Token Ref Number " />
+							<h2>
+								<field name="ref_number" readonly="1" />
+							</h2>
+						</div>
+						<group>
+							<group>
+								<field name="partner_id" attrs="{'readonly': [('state','not in',('draft'))]}" />
+								<field name="quantity" attrs="{'readonly': [('state','not in',('draft'))]}" />
+
+							</group>
+							<group>
+								<field name="token_date" attrs="{'readonly': [('state','not in',('draft'))]}" />
+								<field name="agreement_id" attrs="{'readonly': [('state','not in',('draft'))]}"/>
+							</group>
+						</group>
+<!--						<field name="qty_per_token" class="oe_left mr8" style="width: 40px !important; text-align: right;"/>-->
+<!--						<button name="action_set_qty" string="Set quantity" type="object" class="btn-xs mr8 mb8" />-->
+<!--						<button name="action_restore_initial_qty" string="Reset Quantity" icon="fa-undo" type="object" class="btn-xs mr8 mb8" />-->
+<!--						-->
+						<group>
+								<field name="template" string="Token template" widget="radio"/>
+						</group>
+						<field name="sent" invisible="1"/>
+						<notebook>
+                        	<page string="Token Number" class="oe_page_title" >
+                            	<group string="Tokens" >
+                                	<field name="token_line_ids" nolabel="1" widget="one2many_list">
+                                    	<tree string="Token Number" editable="top"
+											  decoration-warning="status == 'available'"
+											  decoration-sucess="status == 'sold'"
+											  decoration-danger="status in ['lost', 'stolen']"
+											  decoration-muted="status == 'cancelled'">
+											<field name="selected" />
+											<field name="number" />
+                                        	<field name="status" />
+											<field name="qty" sum="Total" />
+										</tree>
+									</field>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+<!--		<record id="vehicle_template_kanban_view" model="ir.ui.view">-->
+<!--			<field name="name">sale.vehicle.kanban</field>-->
+<!--			<field name="model">vehicle.info</field>-->
+<!--			<field name="arch" type="xml">-->
+<!--				<kanban>-->
+<!--					<field name="image" modifiers="{}" />-->
+<!--					<templates>-->
+<!--						<t t-name="kanban-box">-->
+<!--							<div class="oe_kanban_global_click">-->
+<!--								<div class="o_kanban_image">-->
+<!--									<img-->
+<!--										t-att-src="kanban_image('sale.vehicle', 'vehicle_image', record.id.value)" />-->
+<!--								</div>-->
+<!--								<div class="oe_kanban_details">-->
+<!--									<strong>-->
+<!--										<span t-if="record.name.value">-->
+<!--											[-->
+<!--											<field name="name" />-->
+<!--											]-->
+<!--										</span>-->
+<!--										<ul>-->
+<!--											<li>-->
+<!--												Number :-->
+<!--												<field name="vehicle_no" />-->
+<!--											</li>-->
+<!--												<li>-->
+<!--												Owner :-->
+<!--												<field name="owner_id" />-->
+<!--											</li>-->
+<!--										</ul>-->
+<!--									</strong>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</t>-->
+<!--					</templates>-->
+<!--				</kanban>-->
+<!--			</field>-->
+<!--		</record>-->
+
+		<!-- Search view of Token Management -->
+		<record id="token_management_tree" model="ir.ui.view">
+			<field name="name">token.management.tree</field>
+			<field name="model">token.management</field>
+			<field name="arch" type="xml">
+				<tree string="Token Management">
+					<field name="ref_number" />
+					<field name="partner_id" />
+					<field name="quantity" sum="Total"/>
+					<field name="token_date" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Search view of Token Management -->
+		<record id="token_management_search" model="ir.ui.view">
+			<field name="name">token_management.search</field>
+			<field name="model">token.management</field>
+			<field name="arch" type="xml">
+				<search string="Token Management">
+					<field name="ref_number" />
+					<group string="Filter By">
+
+					</group>
+					<group string="Group By">
+
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="token_management_action"
+			model="ir.actions.act_window">
+			<field name="name">Token Management</field>
+			<field name="res_model">token.management</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to assign a new Token.
+				</p>
+			</field>
+		</record>
+
+		<menuitem id="menu_token_management" name="Token Management" action="token_management_action" parent="menu_petrol_station_management" sequence="12" groups="base.group_erp_manager,ab_access_control.account_user"/>
+	</data>
+</odoo>

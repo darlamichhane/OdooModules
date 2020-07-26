@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_jobcard">
+			<t t-call="ab_group.external_layout_jobcard">
+				<t t-call="report.html_container">
+					<t t-foreach="docs" t-as="o">
+						<div class="page">
+                            <div class="row" style="font-size:12px">
+								<div class="col-xs-12">
+									<table class="table table-bordered">
+										<tr>
+											<td width="30%">
+												<b> Name. :  </b>
+												<t t-esc="o.customer_id.name" />
+											</td>
+											<td width="30%">
+												<b> Vehicle Number:  </b>
+												<t t-esc="o.vehicle_id.vehicle_no" />
+											</td>
+											<td width="30%">
+												<b> Date In :  </b>
+												<t t-esc="o.date_in" />
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Address :  </b>
+												<t t-esc="o.address" />
+											</td>
+											<td width="30%">
+												<b> Engine No. :  </b>
+												<t t-esc="o.engine_no" />
+											</td>
+											<td width="30%">
+												<b> KM In:  </b>
+												<t t-esc="o.odometer" />
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Contact Person :  </b>
+												<t t-esc="o.contact_person" />
+											</td>
+											<td width="30%">
+												<b> Model :  </b>
+												<t t-esc="o.vehicle_id.name" />
+											</td>
+											<td width="30%">
+												<b> Promise Del. Date :  </b>
+												<t t-esc="o.date_out" />
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Contact Number :  </b>
+												<t t-esc="o.mobile" />
+											</td>
+											<td width="30%">
+												<b> Chasis No. :  </b>
+												<t t-esc="o.chasis_no" />
+											</td>
+											<td width="30%">
+												<b> Time :  </b>
+												<t t-esc="o.time" />
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Email :  </b>
+												<t t-esc="o.email" />
+											</td>
+											<td width="30%">
+												<b> Service Type :  </b>
+												<t t-esc="o.service_type" />
+											</td>
+											<td width="30%">
+												<b> Payment Method :  </b>
+												<t t-esc="o.payment_method" />
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Insurance Details </b>
+											</td>
+											<td width="30%">
+												<b> Company Name :  </b>
+												<t t-esc="o.insurance_company" />
+											</td>
+											<td width="30%">
+												<b> Valid Upto :  </b>
+												<t t-esc="o.insurance_validity" />
+											</td>
+										</tr>
+									</table>
+
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+												<b> Job Instruction </b>
+												</td>
+											</tr>
+											<tr t-foreach="o.order_lines" t-as="l">
+												<td>
+													<t t-esc="l.product_id.product_tmpl_id.name"/>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+												<b> Technician Report</b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+										</table>
+									</div>
+
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+												<b> Appointment: Yes/NO </b>
+												</td>
+												<td width="30%">
+													<b> Estimate: </b>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+												<b> DQ No:</b>
+												</td>
+												<td width="30%">
+													<b> Done By: </b>
+												</td>
+											</tr>
+										</table>
+									</div>
+
+
+									<div class="col-xs-6">
+										<table class="table table-sm">
+											<tr>
+												<td width="30%">
+												<b> Walk Around Check </b>
+												</td>
+											</tr>
+										</table>
+										<div class="col-xs-6">
+											<img src='/ab_group/static/src/img/car-walkaround-check.jpg' style="max-height: 120px;"/>
+											<table class="table table-bordered">
+												<tr>
+													<td width="30%">
+													<b> Cig. Lighter </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Cassettes/Cds </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Clock/Astrey </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Floor Mats </b>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<div class="col-xs-6">
+											<table class="table table-bordered">
+												<tr>
+													<td width="30%">
+													<b> Spare Wheels </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Seat Covers </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Wheel Caps </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Monogram </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Tools Set </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Jack and Handle </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> No. of Keys </b>
+													</td>
+												</tr>
+												<tr>
+													<td width="30%">
+													<b> Others </b>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Additional Job (if Any) </b>
+												</td>
+												<td width="30%">
+													<b> Revised Del. Date : </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+												<td width="30%">
+												</td>
+											</tr>
+										</table>
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Responsible Technician : </b>
+												</td>
+												<td width="30%">
+													<b> Job Start Time : </b>
+												</td>
+												<td width="30%">
+													<b> Job Completion Time : </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+												<td width="30%">
+												</td>
+												<td width="30%">
+												</td>
+											</tr>
+										</table>
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Recommendation  </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+										</table>
+
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Parts Ordered (if Any)  </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+												</td>
+											</tr>
+										</table>
+									</div>
+
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Job Taken By :  </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+													<b> Signature : </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+													<b> Remarks (if Any) :  </b>
+												</td>
+											</tr>
+										</table>
+									</div>
+
+									<div class="col-xs-6">
+										<table class="table table-bordered">
+											<tr>
+												<td width="30%">
+													<b> Final Inspection Done By :  </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+													<b> Signature : </b>
+												</td>
+											</tr>
+											<tr>
+												<td width="30%">
+													<b> Remarks (if Any) :  </b>
+												</td>
+											</tr>
+										</table>
+									</div>
+                                </div>
+								<div class="col-xs-12" style="font-size:12px">
+									<b> Terms and Conditions :  </b>
+									<br/>
+									1. Global auto point employees may operate vehicle for purpose of repair, testing, inspection and/or delivery at the customer risk.
+									<br/>
+									2. Global Auto Point shall not be held responsible for loss or damage to the vehicle or article left in the vehicle in case of fire, earthquake or may other unforeseen measures beyond the control of Global Auto Point.
+									<br/>
+									3. Customer agree to pay interest at the rate of 18% per annum on all accounts not paid within due date.
+									<br/>
+									4. In case of litigation or non-payment of this repair order, customer agrees to submit himself to the Jurisdiction on the courts.
+									<br/>
+									5. No claim for unsatisfied repairs to vehicle under repair shall be considered unless received by TAWERCUTS 3 days after the vehicle has been delivered.
+								</div>
+								<div class="col-xs-12" style="font-size:12px">
+									<br/>
+									The Work, Repair and Replacement of New Parts if required here by authorized and Terms Agreed to as mentioned below:
+									<table class="table table-sm">
+										<tr>
+											<td width="30%">
+												<b> Customer Name and Signature :  </b>
+											</td>
+										</tr>
+										<tr>
+											<td width="30%">
+												<b> Date :  </b>
+											</td>
+										</tr>
+									</table>
+								</div>
+						    </div>
+                        </div>
+					</t>
+				</t>
+			</t>
+		</template>
+    </data>
+</odoo>

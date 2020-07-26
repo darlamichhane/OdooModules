@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+		<menuitem id="menu_transport" name="TIMS" sequence="1" />
+
+        <!--Menu-->
+        <menuitem id="menu_transport_management" name="Transport Management" parent="menu_transport" sequence="2"/>
+        <menuitem id="menu_transport_reports" name="Reports" parent="menu_transport" sequence="3" />
+
+        <!-- Reporting sub-menus -->
+   <!--     <menuitem id="account_reports_management_menu" name="Management" parent="account.menu_finance_reports" sequence="4" groups="group_account_user"/>
+        <menuitem id="account_reports_business_intelligence_menu" name="Business Intelligence" parent="account.menu_finance_reports" sequence="5" groups="group_account_invoice"/>
+-->
+        <!--Configuration-->
+        <menuitem id="menu_transport_configuration" name="Configuration" parent="menu_transport" sequence="15"/>
+
+        <!-- Configuration Sub-Menu -->
+      <!--  <menuitem id="account_account_menu" name="Accounting" parent="account.menu_finance_configuration" sequence="2" groups="group_account_invoice"/>
+        <menuitem id="account_management_menu" name="Management" parent="account.menu_finance_configuration" sequence="3" groups="group_account_manager"/>
+-->
+    </data>
+</odoo>

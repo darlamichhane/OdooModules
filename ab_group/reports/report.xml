@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_job_card"
+                string="Job Card"
+                model="work.order"
+                report_type="qweb-pdf"
+                name="ab_group.report_jobcard"
+                file="ab_group.report_jobcard"/>
+
+        <template id="external_layout_jobcard">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="ab_group.external_layout_jobcard_header"/>
+<!--            <t t-call="ab_group.external_layout_jobcard_footer"/>-->
+            <t t-raw="0"/>
+        </template>
+
+        <template id="external_layout_jobcard_header">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-12" style="font-size:16px">
+                        <div class="col-xs-3" align="left">
+                            <b style="font-size:20px">Global Auto Point</b>
+                            <t>Airport mode, Biratnagar Tel:021-463570,460965 Email:gapbrt@gmail.com</t>
+                        </div>
+
+                        <div class="col-xs-6" align="center">
+                            <b style="font-size:25px">
+                                <u>JOB ORDER FORM</u>
+                            </b>
+                            <br/>
+                        </div>
+                        <div class="col-xs-3" align="right">
+                            <img src='/ab_group/static/src/img/toyota-quality-service.jpg' style="max-height: 100px;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+<!--        <template id="external_layout_jobcard_footer">-->
+<!--            <div class="footer">-->
+<!--                <div class="row" style="font-size:12px;">-->
+<!--                    <left>-->
+<!--                        <b>Terms and Conditions:</b>-->
+<!--                        <br/>-->
+<!--                    </left>-->
+<!--                    <table class="border-black" width="100%">-->
+<!--                        <tr>-->
+<!--                            <td align="left">-->
+<!--                                1. Global auto point employees may operate vehicle for purpose of repair, testing, inspection and/or delivery at the customer risk.-->
+<!--                                <br/>-->
+<!--                                2. Global Auto Point shall not be held responsible for loss or damage to the vehicle or article left in the vehicle in case of fire, earthquake or may other unforeseen measures beyond the control of Global Auto Point.-->
+<!--                                <br/>-->
+<!--                                3. Customer agree to pay interest at the rate of 18% per annum on all accounts not paid within due date.-->
+<!--                                <br/>-->
+<!--                                4. In case of litigation or non-payment of this repair order, customer agrees to submit himself to the Jurisdiction on the courts.-->
+<!--                                <br/>-->
+<!--                                5. No claim for unsatisfied repairs to vehicle under repair shall be considered unless received by TAWERCUTS 3 days after the vehicle has been delivered.-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </template>-->
+    </data>
+</odoo>

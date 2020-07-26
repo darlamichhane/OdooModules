@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Token check views -->
+        <record id="view_token_management_line_tree" model="ir.ui.view">
+            <field name="name">token.management_line.tree</field>
+            <field name="model">token.management.line</field>
+            <field name="arch" type="xml">
+                <tree string="Token Claim" editable="top" create="false"
+                      decoration-warning="status == 'available'"
+                      decoration-sucess="status == 'sold'"
+                      decoration-danger="status in ['lost', 'stolen']"
+                      decoration-muted="status == 'cancelled'">
+                    <field name="partner_id"/>
+                    <field name="number"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_token_management_line_search" model="ir.ui.view">
+            <field name="name">token.management.line.search</field>
+            <field name="model">token.management.line</field>
+            <field name="arch" type="xml">
+                <search string="Token Management">
+                    <field name="number"/>
+<!--                    <field name="partner_id"/>-->
+<!--                    <field name="company_id"/>-->
+                    <separator/>
+                    <filter name="partner_id" string="Partner" />
+                    <filter name="available" string="Available" domain="[('status', '=', 'available')]"/>
+                    <filter name="sold" string="Sold" domain="[('status', '=', 'sold')]"/>
+                    <filter name="lost" string="Lost" domain="[('status', '=', 'lost')]"/>
+                    <filter name="cancelled" string="Cancelled" domain="[('status', '=', 'cancelled')]"/>
+                    <filter name="stolen" string="Stolen" domain="[('status', '=', 'stolen')]"/>
+                    <separator/>
+                    <group name="groupby">
+                    <filter name="partner_groupby" string="Customer"
+                        context="{'group_by': 'partner_id'}"/>
+                    <filter name="number_groupby" string="Token Number"
+                        context="{'group_by': 'number'}"/>
+                    <filter name="status_groupby" string="Status"
+                        context="{'group_by': 'status'}"/>
+                </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Token check menus -->
+        <record id="action_token_management_line" model="ir.actions.act_window">
+            <field name="name">Token Claim</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">token.management.line</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree</field>
+        </record>
+        <menuitem id="menu_token_management_line" name="Token Claim" action="action_token_management_line" parent="menu_petrol_station_config"
+			 		sequence="15" groups="base.group_erp_manager,ab_access_control.account_user"/>
+
+    </data>
+</odoo>

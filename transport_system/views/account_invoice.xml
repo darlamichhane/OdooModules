@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!--Inherit Customer Invoice Form view -->
+		<record id="account_invoice_transport_inherit" model="ir.ui.view">
+			<field name="name">account.invoice.transport.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="consignor_id"
+						options='{"no_create":1, "no_create_edit":1, &quot;always_reload&quot;: True}'
+						context="{'search_default_customer':1, 'show_address': 1}" domain="[('customer', '=', True)]" />
+					<field name="consignee_id"
+						options='{"no_create":1, "no_create_edit":1, &quot;always_reload&quot;: True}'
+						context="{'search_default_customer':1, 'show_address': 1}" domain="[('customer', '=', True)]" />
+
+					<field name="document_type" options='{"no_create":1, "no_create_edit":1}' />
+					<field name="custom_office_id" options='{"no_create":1, "no_create_edit":1}' attrs="{'invisible': [('document_type','!=', 'pragyapan patra')]}"/>
+					<field name="load_type" options='{"no_create":1, "no_create_edit":1}' />
+					<field name="vehicle_id" options='{"no_create": True,"no_open": True}' attrs="{'invisible': [('load_type','!=', 'full')]}"/>
+					<field name="driver_id" options='{"no_create": True,"no_open": True}' attrs="{'invisible': [('load_type','!=', 'full')]}"/>
+					<field name="count" invisible="1"/>
+				</xpath>
+				<xpath expr="//field[@name='date_invoice']" position="after">
+					<field name="send_from" options='{"no_create": True,"no_open": True}' />
+					<field name="send_to" options='{"no_create": True,"no_open": True}' />
+					<field name="bill_no" />
+					<field name="bill_amount" />
+					<field name="pay_status"/>
+				</xpath>
+
+				<xpath expr="//field[@name='user_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='action_invoice_cancel']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='124']" position="before">
+					 <button name="tax_invoice_reprint" string="Re-Print" type="object" attrs="{'invisible':['|',('sent','=',False)]}" groups="base.group_user"/>
+				</xpath>
+			</field>
+		</record>
+
+		<!--Inherit Customer Invoice sale Form view -->
+		<record id="view_customer_invoice_sale_inherit" model="ir.ui.view">
+			<field name="name"> view.customer.sale.invoice.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="sale.account_invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='team_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+			</field>
+		</record>
+
+
+		<!--Inherit Customer Invoice Tree view -->
+		<record id="customer_invoice_inherit_tree_view" model="ir.ui.view">
+			<field name="name">customer.invoice.inherit.tree.view</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='state']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='date_due']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='residual_signed']" position="after">
+					<field name="pay_status" string="Status"/>
+				</xpath>
+				<xpath expr="//field[@name='pay_status']" position="after">
+					<field name="manifest_status"/>
+				</xpath>
+				<xpath expr="//field[@name='origin']" position="replace">
+					<field name="origin" string="Source" />
+				</xpath>
+			</field>
+		</record>
+
+		<!--Inherit journal Entries search view -->
+		<record id="view_account_invoice_inherit_search" model="ir.ui.view">
+			<field name="name">account.invoice.search.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.view_account_invoice_filter" />
+			<field name="arch" type="xml">
+				<xpath expr="//search" position="inside">
+					<filter string="To Pay" domain="[('pay_status','=','to_pay')]"
+						name="to_pay" />
+					<filter string="Manifested" domain="[('manifest_status','=','manifested')]"
+						name="manifest_done" />
+					<filter string="Waiting Manifest" domain="[('manifest_status','=','to manifest')]"
+						name="to_manifest" />
+					<filter string="Transit" domain="[('manifest_status','=','transit')]"
+						name="transit" />
+					<filter name="paystatus" string="Pay Status" context="{'group_by':'pay_status'}"/>
+				</xpath>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

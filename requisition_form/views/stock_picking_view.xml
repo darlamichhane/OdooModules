@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="view_stock_picking_inherit_form" model="ir.ui.view">
+			<field name="name">stock.picking.inherit.requisition</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<field name="location_dest_id" position="after">
+					<field name="requisition_id"
+						attrs="{'readonly': [('state','not in',['draft'])], 'invisible': [('picking_type_code', '!=', 'internal')]}"
+						class="oe_edit_only" options="{'no_create': True}" />
+				</field>
+
+				<!--<xpath expr="//button[@name='262']" position="replace">
+					<button name="deliveryslip_print" string="Print" states="done" type="object" groups="base.group_user"/>
+				</xpath>-->
+			</field>
+		</record>
+
+		<record id="view_stock_move_inherit" model="ir.ui.view">
+			<field name="name"> view.stock.move.inherit</field>
+			<field name="model">stock.move</field>
+			<field name="inherit_id" ref="stock.view_move_picking_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='state']" position="before">
+					<field name="on_hand_stock" />
+					<field name="remaining_stock" />
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

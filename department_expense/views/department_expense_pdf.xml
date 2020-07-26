@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report id="action_report_department"
+			model="report.department_expense.report_department"
+			string="Department Purchase Report" report_type="qweb-html"
+			name="department_expense.report_department"
+			file="department_expense.report_department" />
+	</data>
+</odoo>

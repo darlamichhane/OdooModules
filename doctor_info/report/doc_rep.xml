@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        
+
+         <record id="migdata_xls_report_wizard1" model="ir.ui.view">
+            <field name="name">doctor.reporting.wizards</field>
+            <field name="model">doctor.reporting</field>
+            <field name="arch" type="xml">
+                <form string="Doctor Checkups Report">
+                    <field name="state" invisible="1"/>
+                    <div states="get">
+                         <group>
+                            <field name="invoice_data" colspan="4" invisible="1"/>
+                            <field name="file_name" filename="invoice_data" colspan="4"/>
+                        </group>
+                    </div>
+                    <div states="choose">
+                      <p class="oe_grey">
+                      Do You want to Print Doctor Checkups Report ?
+                      </p>
+                      <group>
+                     <field name="doctor_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                     <field name="category_id"  options="{'no_create': True, 'no_create_edit':True}"/>
+                     <!-- <field name="team_id" /> -->
+                     <!-- <field name="stage_id" /> -->
+                     <field name="date_from" />
+                     <field name="date_to" />
+                    </group>
+                    </div>
+                    <footer states="choose">
+                        <button string="Generate Report"
+                            class="btn-primary"
+                            name="action_doc_report"
+                            type="object"/>
+                        <button string="Cancel"
+                            class="btn-default"
+                            special="cancel" />
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Ok" class="oe_highlight" />
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+	
+        <record id="action_view_migdata_xls1" model="ir.actions.act_window">
+            <field name="name">Doctor Checkups Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">doctor.reporting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="migdata_xls_report_wizard1"/>
+            <field name="target">new</field>
+        </record>
+       
+	
+        
+        <menuitem name="Doctor Checkups Report"
+                  id="sub_crmsales_report"
+                  parent="account.menu_finance_reports"
+                  sequence="102"
+                  action="action_view_migdata_xls1"/> 
+
+
+
+</odoo>

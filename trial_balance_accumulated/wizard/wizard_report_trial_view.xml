@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- (C)opyright Aadarsha Shrestha, 2019. See LICENSE for full copyright and licensing details.-->
+<odoo>
+
+    <record id="account_report_balance_view" model="ir.ui.view">
+        <field name="name">Trial Balance</field>
+        <field name="model">account.balance.report</field>
+        <field name="inherit_id" ref="account.account_report_balance_view"/>
+        <field name="arch" type="xml">
+            <data>
+            <field name="display_account" position="after">
+                  <field name="is_accumulated_balance"/>
+            </field>
+            </data>
+        </field>
+      </record>
+  </odoo>

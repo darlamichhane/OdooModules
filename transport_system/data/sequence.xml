@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<!-- Sequences for transport.manifest -->
+		<record id="seq_transport_manifest" model="ir.sequence">
+			<field name="name">Manifest Sequence</field>
+			<field name="code">transport.manifest.sequence</field>
+			<field name="prefix">MAN/%(range_year)s/</field>
+			<field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+			<field name="padding">4</field>
+			<field name="company_id" eval="True" />
+		</record>
+
+	</data>
+</odoo>

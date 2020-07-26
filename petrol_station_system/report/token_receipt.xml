@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                string="Token / Credit Sales"
+                id="action_report_token_sales"
+                model="token.sales"
+                report_type="qweb-pdf"
+                name="petrol_station_system.report_token_receipt"
+                file="petrol_station_system.report_token_receipt"
+        />
+        <record id="paperformat_portrait" model="report.paperformat">
+            <field name="name">A6 w/o header</field>
+            <field name="default" eval="True" />
+            <field name="format">A6</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="petrol_station_system.action_report_token_sales"
+                model="ir.actions.report.xml">
+                    <field name="paperformat_id" ref="petrol_station_system.paperformat_portrait" />
+        </record>
+
+    </data>
+</odoo>

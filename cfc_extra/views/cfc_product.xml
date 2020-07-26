@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record model="ir.ui.view"
+		id="product_template_form_view_invoice_account_button">
+		<field name="name">product.template.invoice.account.button</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="product.product_template_only_form_view" />
+		<field name="arch" type="xml">
+			<div name="button_box" position="inside">
+				<button name="open_account_invoice_lines" type="object"
+					class="oe_stat_button" icon="fa-usd">
+					<field name="invoices_count" widget="statinfo" />
+				</button>
+			</div>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="product_template_update_qty_button">
+		<field name="name">product.template.update_qty.button</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id"
+			ref="stock.product_template_form_view_procurement_button" />
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='272']" position="attributes">
+				<attribute name="groups">base.group_erp_manager</attribute>
+			</xpath>
+			<xpath expr="//button[@name='274']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+		</field>
+	</record>
+
+
+	<record model="ir.ui.view" id="cfc_product_template_sale_order_button">
+		<field name="name">cfc.product.template.sale.order.button</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="sale.product_template_form_view_sale_order_button" />
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='action_view_sales']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="cfc_account_invoice_line_tree">
+		<field name="name">cfc.account.invoice.line.tree</field>
+		<field name="model">account.invoice.line</field>
+		<field name="inherit_id" ref="account.view_invoice_line_tree" />
+		<field name="arch" type="xml">
+			<data>
+				<xpath expr="//field[@name='account_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='name']" position="before">
+					<field name="invoice_id" />
+				</xpath>
+				<xpath expr="//field[@name='name']" position="before">
+					<field name="partner_id" string="Customer" />
+				</xpath>
+				<xpath expr="//field[@name='quantity']" position="replace">
+					<field name="quantity" string="Qty" />
+				</xpath>
+				<xpath expr="//field[@name='quantity']" position="before">
+					<field name="create_uid" />
+				</xpath>
+				<xpath expr="//field[@name='price_subtotal']" position="replace">
+					<field name="price_subtotal" sum="Total" widget="monetary" />
+				</xpath>
+			</data>
+		</field>
+	</record>
+</odoo>

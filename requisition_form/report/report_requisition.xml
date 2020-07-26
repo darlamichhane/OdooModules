@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_requisition">
+			<t t-call="requisition_form.external_layout">
+				<t t-call="report.html_container">
+					<t t-foreach="docs" t-as="o">
+						<div class="page">
+							<h2 style="text-align: center;">Requisition Form</h2>
+							<div class="col-xs-12">
+								<div class="col-xs-6" align="left" style="padding-bottom:10px;margin-left:-12px;padding-top:-10px;">
+										<b> Req No :  </b>
+										<t t-esc="o.name" /><br /><br />
+										The Supervisor/ Store Incharge <br />
+										Global Auto Point <br />
+										Biratnagar <br /><br />
+									</div>
+									<div class="col-xs-6" align="right">
+										<b> Date :  </b>
+										<t t-esc="o.date_request" />
+										<br />
+									</div>
+									<div class="col-xs-12" align="left" style="padding-bottom:10px;margin-left:-12px;padding-top:-10px;">
+										I hereby request you to supply following goods for our necessary doing to accomplish smooth and timely work. <br /><br />
+									<div class="col-xs-6" align="left" style="padding-bottom:10px;margin-left:-12px;padding-top:-10px;">
+										Vehicle No :
+										<t t-esc="o.vehicle_id.vehicle_no" /><br />
+										Model No :
+										<t t-esc="o.model" /><br />
+										Engine No :
+										<t t-esc="o.engine_no" /><br />
+										Chasis No :
+										<t t-esc="o.chasis_no" /><br />
+									</div>
+									<div class="col-xs-6" align="left">
+										Make :<t t-esc="o.make" /><br />
+										Job Card No. :<t t-esc="o.make" /><br />
+									</div>
+									</div>
+
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th width="2%">S.N.</th>
+												<th>Product</th>
+												<th class="text-right">Quantity</th>
+												<th class="text-right">Remarks</th>
+											</tr>
+										</thead>
+										<tbody>
+											<t t-foreach="o.requisition_ids" t-as="l">
+												<tr>
+													<td><span t-esc="l_index+1" /></td>
+													<td>
+														<span t-esc="l.product_id.name" />
+													</td>
+													<td class="text-right">
+														<span t-esc="l.product_uom_qty" />
+													</td>
+													<td class="text-right">
+														<span t-esc="l.remarks" />
+													</td>
+												</tr>
+											</t>
+										</tbody>
+									</table>
+								</div>
+							<div class="col-xs-12" style="padding-left:10px;margin-top:10px;">
+								<div class="col-xs-4">
+									<div align="left">
+										Demanded By<br/>
+										Name : <t t-esc="o.user_id.name" /><br/>
+										Designation : <!--<t t-esc="o." />--><br/>
+										Signature : <br/>
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<div align="left">
+										Issued By<br/>
+										Name : <t t-esc="o.user_id.name" /><br/>
+										Designation : <!--<t t-esc="o." />--><br/>
+										Signature : <br/>
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<div align="left">
+										Approved By<br/>
+										Name : <t t-esc="o.user_id.name" /><br/>
+										Designation : <!--<t t-esc="o." />--><br/>
+										Signature : <br/>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12" style="padding-left:10px;margin-top:20px;">
+								<div class="col-xs-12">
+									<div align="left">
+										Remarks: The work who performs and the goods who supply will take entire responsibility for the smooth and timely accomplishment of works.<br/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

@@ -1,0 +1,55 @@
+
+
+.pos .order-container {
+    border-left: solid 1px rgb(110, 200, 155);
+    border-right: solid 1px rgb(110, 200, 155);
+}
+.pos .order .summary .total {
+    font-size: 24px;
+    float: right;
+    color: #6EC89B
+}
+.pos .order .summary .line .subentry > span {
+    float: right;
+}
+
+.pos .order .summary .line {
+    border-top: none;
+}
+    
+.pos .order .orderline {
+    border-top: solid 1px rgb(110, 200, 155);
+    padding-top: 2px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+}
+.pos .order .orderline:first-child {
+    border-top: none;
+}
+.pos .order .orderline.selected {
+    background: rgba(140, 230, 50, 0.2);
+}
+.pos .order .orderline:hover {
+    background-color: rgba(218, 165, 32, 0.2);   
+}
+.pos .order .orderline .info-list em {
+    padding-left: 20px;
+}
+
+.card {
+    font-family: Quicksand, sans-serif;
+    background: none;
+}
+.pos .card-label {
+    font-size: 14px;
+    float: left;
+    padding-left: 24px;
+}
+.pos .note-input{
+    width: 60%; 
+    height: 30px; 
+    padding: 10px; 
+    background-color: lightyellow;
+    color: crimson;
+    font-size: 18px;
+}

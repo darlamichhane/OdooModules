@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+	<record id="mass_payment_wizard1" model="ir.ui.view">
+		<field name="name">mass.payment.wizards</field>
+		<field name="model">mass.payment</field>
+		<field name="arch" type="xml">
+			<form string="Salesperson Payments">
+				<field name="state" invisible="1" />
+				<div states="choose">
+					<group>
+						<field name="user_id"
+							options="{'no_create': True, 'no_create_edit':True}" />
+						<field name="date_from" />
+						<field name="date_to" />
+					</group>
+				</div>
+				<footer states="choose">
+					<button string="Get Invoices" class="btn-primary"
+						name="action_show_invoices" type="object" />
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+
+				<div states="done">
+					<p class="oe_grey">
+						All Invoices Paid Sucessfully.
+					</p>
+				</div>
+				<footer states="done">
+					<button string="OK" class="btn-primary" special="cancel" />
+				</footer>
+
+				<div states="get">
+					<div class="oe_clear" />
+					<separator string="Invoices" />
+
+					<group>
+						<field name="journal_id" widget="selection" />
+						<field name="payment_date" />
+					</group>
+
+					<field name="invoices_ids">
+						<tree string="Invoices List" create="0">
+							<field name="name" />
+							<field name="user_id" />
+							<field name="payment_date" />
+							<field name="state" />
+							<field name="patient_id" />
+							<field name="amount" widget="monetary" />
+						</tree>
+					</field>
+
+					<group class="oe_subtotal_footer oe_right">
+						<field name="amount" widget="monetary" />
+					</group>
+				</div>
+
+				<footer states="get">
+					<button string="Register Payment" class="btn-primary"
+						name="action_create_salesperson_pay" type="object" />
+					<button special="cancel" string="Cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_mass_xls1" model="ir.actions.act_window">
+		<field name="name">Salesperson Payment </field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">mass.payment</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="mass_payment_wizard1" />
+		<field name="target">new</field>
+	</record>
+
+
+
+	<menuitem name="Salesperson Payment"
+		id="sub_mass_payment_report" parent="account.menu_finance_reports"
+		sequence="102" action="action_view_mass_xls1" />
+
+	<record id="invoice_order_inherit_for" model="ir.ui.view">
+		<field name="name">account.invoice.form.inherit</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='action_invoice_sent']"
+				position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<!-- <xpath expr="//button[@name='action_invoice_cancel' and @states='draft,proforma2,open']" 
+				position="attributes"> <attribute name="invisible">1</attribute> </xpath> 
+				<xpath expr="//button[@name='invoice_print']" position="attributes"> <attribute 
+				name="invisible">1</attribute> </xpath> -->
+			<xpath expr="//button[@name='124']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+		</field>
+	</record>
+
+
+	<record id="invoice_sale_order_inherit_for" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//button[@name='action_quotation_send']"
+				position="attributes">
+				<attribute name="states">cancel</attribute>
+			</xpath>
+
+			<xpath expr="//button[@name='print_quotation']"
+				position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<xpath expr="//button[@name='action_cancel']"
+				position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<xpath expr="//button[@name='action_draft']"
+				position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+			<xpath expr="//button[@name='action_done']"
+				position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

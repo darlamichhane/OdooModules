@@ -1,0 +1,6 @@
+<odoo>
+    <data>
+<!--         <menuitem id="sales_team.menu_sale_config" name="Configuration" parent="sales_team.menu_base_partner"-->
+<!--                  sequence="100" groups="base.group_erp_manager"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="button_order_note">
+        <div class='control-button'>
+            <i class='fa fa-commenting-o' /> <span class="label">Remarks </span>
+        </div>
+    </t>
+
+    <t t-name="popup_order_note">
+        <div class="modal-dialog">
+            <div class="popup order-note">
+                <p class="title"><t t-esc=" widget.options.title || 'Confirm ?' " /></p>
+                <p class="body"><t t-esc="  widget.options.body || '' "/></p>
+                <div class="row" style="padding-bottom: 40px">
+                    <div class="form-group label-floating is-empty">
+                        <textarea rows="10" cols="40"><t t-esc="widget.options.value" class="note-input"/></textarea>
+                        <!-- <input type="text" t-att-value="widget.options.value || ''" class="note-input"/> -->
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="button confirm">
+                        Add Remarks
+                    </div>
+                    <div class="button cancel">
+                        Close
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="table[class*='receipt-orderlines']" t-operation="replace">
+    		<table class='receipt-orderlines'>
+                <colgroup>
+                    <col width='50%' />
+                    <col width='25%' />
+                    <col width='25%' />
+                </colgroup>
+                <tr t-foreach="orderlines" t-as="orderline">
+                    <td>
+                        <t t-esc="orderline.get_product().display_name"/>
+                        <t t-if="orderline.get_discount() > 0">
+                            <br/>
+                            <div class="pos-disc-font">
+                                With a <t t-esc="orderline.get_discount()"/>% discount
+                            </div>
+                        </t>
+                        <div t-if="orderline.note">
+			                <div class="pos-disc-font">
+			                    <i class="fa fa-tag">
+			                   		<t t-esc="orderline.note"/>
+			                    </i>
+			                </div>
+		                </div>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="orderline.get_quantity_str_with_unit()"/>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(orderline.get_display_price())"/>
+                    </td>
+                </tr>
+            </table>
+        </t>
+        <t t-jquery=".receipt-change" t-operation="after">
+            <t t-if="order.note">
+                <table>
+                    <t t-if="order.note">
+                        <tr>
+                            <td>Remarks :</td>
+                            <td class="pos-right-align">
+                                <t t-esc="order.note" />
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </t>
+        </t>
+    </t>
+
+</templates>

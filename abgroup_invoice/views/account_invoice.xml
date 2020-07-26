@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!--Inherit Customer Invoice Form view -->
+		<record id="account_invoice_abgroup_inherit" model="ir.ui.view">
+			<field name="name">account.invoice.abgroup.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					 <!--<field name="count" invisible="1"/>-->
+				</xpath>
+
+				<xpath expr="//field[@name='user_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='action_invoice_cancel']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<!--<xpath expr="//button[@name='361']" position="before">
+					 <button name="invoice_reprint" string="Re-Print" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', '!=', 'open')]}" groups="base.group_user"/>
+				</xpath>-->
+			</field>
+		</record>
+
+		<!--Inherit Customer Invoice sale Form view -->
+		<record id="view_customer_invoice_sale_abgroup_inherit" model="ir.ui.view">
+			<field name="name"> view.customer.sale.invoice.abgroup.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="sale.account_invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='team_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+			</field>
+		</record>
+
+	</data>
+</odoo>

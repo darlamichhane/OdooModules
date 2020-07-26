@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- <record id="purchase_order_form_inherited" model="ir.ui.view">
+            <field name="name">account.invoiceinheriteds</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="reference" position="after">
+                    
+					 <button  name="reg_pay_view" 
+         string="Register Payment TDS" 
+         type="object" />
+                 </field>
+            </field>
+        </record> -->
+</odoo>

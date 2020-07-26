@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="inherit_account_config_settings_view" model="ir.ui.view">
+		<field name="name">inherit.account.config.settings.view</field>
+		<field name="model">account.config.settings</field>
+		<field name="inherit_id" ref="account.view_account_config_settings" />
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='accounting']" position="after">
+				<separator string="ST Charge" groups="account.group_account_user"/>
+				<group name="service_charge" groups="account.group_account_user">
+					<label for="id" string="ST Charge" />
+					<div name="service_charge_conf">
+						<field name="service_charge" class="oe_inline" />
+						<label for="service_charge" />
+						<group attrs="{'invisible': [('service_charge', '&lt;&gt;', True)]}"
+							col="2">
+							<group>
+								<field name="service_charge_account" />
+								<field name="service_charge_amount" />
+							</group>
+						</group>
+					</div>
+				</group>
+			</xpath>
+
+		</field>
+	</record>
+
+</odoo>

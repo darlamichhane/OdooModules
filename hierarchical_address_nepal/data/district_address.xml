@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Province No. 1 -->
+		<record id="address_bhojpur" model="res.address.district">
+			<field name="name">Bhojpur</field>
+            <field name="state_id">1</field>
+		</record>
+		<record id="address_dhankuta" model="res.address.district">
+			<field name="name">Dhankuta</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_ilam" model="res.address.district">
+			<field name="name">Ilam</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_jhapa" model="res.address.district">
+			<field name="name">Jhapa</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_khotang" model="res.address.district">
+			<field name="name">Khotang</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_morang" model="res.address.district">
+			<field name="name">Morang</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_okhaldhunga" model="res.address.district">
+			<field name="name">Okhaldhunga</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_panchthar" model="res.address.district">
+			<field name="name">Panchthar</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_sankhuwasabha" model="res.address.district">
+			<field name="name">Sankhuwasabha</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_solukhumbu" model="res.address.district">
+			<field name="name">Solukhumbu</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_sunsari" model="res.address.district">
+			<field name="name">Sunsari</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_taplejung" model="res.address.district">
+			<field name="name">Taplejung</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_terhathum" model="res.address.district">
+			<field name="name">Terhathum</field>
+			<field name="state_id">1</field>
+		</record>
+		<record id="address_udayapur" model="res.address.district">
+			<field name="name">Udayapur</field>
+			<field name="state_id">1</field>
+		</record>
+
+		<!-- Province No. 2 -->
+		<record id="address_bara" model="res.address.district">
+			<field name="name">Bara</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_dhanusa" model="res.address.district">
+			<field name="name">Dhanusa</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_mahottari" model="res.address.district">
+			<field name="name">Mahottari</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_parsa" model="res.address.district">
+			<field name="name">Parsa</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_rautahat" model="res.address.district">
+			<field name="name">Rautahat</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_saptari" model="res.address.district">
+			<field name="name">Saptari</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_sarlahi" model="res.address.district">
+			<field name="name">Sarlahi</field>
+			<field name="state_id">2</field>
+		</record>
+		<record id="address_siraha" model="res.address.district">
+			<field name="name">Siraha</field>
+			<field name="state_id">2</field>
+		</record>
+
+		<!-- Province No. 3 -->
+		<record id="address_bhaktapur" model="res.address.district">
+			<field name="name">Bhaktapur</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_chitwan" model="res.address.district">
+			<field name="name">Chitwan</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_dhading" model="res.address.district">
+			<field name="name">Dhading</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_dolakha" model="res.address.district">
+			<field name="name">Dolakha</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_kathmandu" model="res.address.district">
+			<field name="name">Kathmandu</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_kavrepalanchok" model="res.address.district">
+			<field name="name">Kavrepalanchok</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_lalitpur" model="res.address.district">
+			<field name="name">Lalitpur</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_makwanpur" model="res.address.district">
+			<field name="name">Makwanpur</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_nuwakot" model="res.address.district">
+			<field name="name">Nuwakot</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_ramechhap" model="res.address.district">
+			<field name="name">Ramechhap</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_rasuwa" model="res.address.district">
+			<field name="name">Rasuwa</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_sindhuli" model="res.address.district">
+			<field name="name">Sindhuli</field>
+			<field name="state_id">3</field>
+		</record>
+		<record id="address_sindhupalchok" model="res.address.district">
+			<field name="name">Sindhupalchok</field>
+			<field name="state_id">3</field>
+		</record>
+
+		<!-- Province No. 4 -->
+		<record id="address_baglung" model="res.address.district">
+			<field name="name">Baglung</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_gorkha" model="res.address.district">
+			<field name="name">Gorkha</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_kaski" model="res.address.district">
+			<field name="name">Kaski</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_lamjung" model="res.address.district">
+			<field name="name">Lamjung</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_manang" model="res.address.district">
+			<field name="name">Manang</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_mustang" model="res.address.district">
+			<field name="name">Mustang</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_myagdi" model="res.address.district">
+			<field name="name">Myagdi</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_nawalpur" model="res.address.district">
+			<field name="name">Nawalpur</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_parbat" model="res.address.district">
+			<field name="name">Parbat</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_syangja" model="res.address.district">
+			<field name="name">Syangja</field>
+			<field name="state_id">4</field>
+		</record>
+		<record id="address_tanahun" model="res.address.district">
+			<field name="name">Tanahun</field>
+			<field name="state_id">4</field>
+		</record>
+
+		<!-- Province No. 5 -->
+		<record id="address_arghakhanchi" model="res.address.district">
+			<field name="name">Arghakhanchi</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_banke" model="res.address.district">
+			<field name="name">Banke</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_bardiya" model="res.address.district">
+			<field name="name">Bardiya</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_dang" model="res.address.district">
+			<field name="name">Dang</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_eastern_rukum" model="res.address.district">
+			<field name="name">Rukum Purba</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_gulmi" model="res.address.district">
+			<field name="name">Gulmi</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_kapilvastu" model="res.address.district">
+			<field name="name">Kapilvastu</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_palpa" model="res.address.district">
+			<field name="name">Palpa</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_parasi" model="res.address.district">
+			<field name="name">Parasi</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_pyuthan" model="res.address.district">
+			<field name="name">Pyuthan</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_rolpa" model="res.address.district">
+			<field name="name">Rolpa</field>
+			<field name="state_id">5</field>
+		</record>
+		<record id="address_rupandehi" model="res.address.district">
+			<field name="name">Rupandehi</field>
+			<field name="state_id">5</field>
+		</record>
+
+
+		<!-- Province No. 6 -->
+		<record id="address_dailekh" model="res.address.district">
+			<field name="name">Dailekh</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_dolpa" model="res.address.district">
+			<field name="name">Dolpa</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_humla" model="res.address.district">
+			<field name="name">Humla</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_jajarkot" model="res.address.district">
+			<field name="name">Jajarkot</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_jumla" model="res.address.district">
+			<field name="name">Jumla</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_kalikot" model="res.address.district">
+			<field name="name">Kalikot</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_mugu" model="res.address.district">
+			<field name="name">Mugu</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_salyan" model="res.address.district">
+			<field name="name">Salyan</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_surkhet" model="res.address.district">
+			<field name="name">Surkhet</field>
+			<field name="state_id">6</field>
+		</record>
+		<record id="address_western_rukkum" model="res.address.district">
+			<field name="name">Rukum Paschim</field>
+			<field name="state_id">6</field>
+		</record>
+
+
+		<!-- Province No. 7 -->
+		<record id="address_achham" model="res.address.district">
+			<field name="name">Achham</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_baitadi" model="res.address.district">
+			<field name="name">Baitadi</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_bajhang" model="res.address.district">
+			<field name="name">Bajhang</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_bajura" model="res.address.district">
+			<field name="name">Bajura</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_dadeldhura" model="res.address.district">
+			<field name="name">Dadeldhura</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_darchula" model="res.address.district">
+			<field name="name">Darchula</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_doti" model="res.address.district">
+			<field name="name">Doti</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_kailali" model="res.address.district">
+			<field name="name">Kailali</field>
+			<field name="state_id">7</field>
+		</record>
+		<record id="address_kanchanpur" model="res.address.district">
+			<field name="name">Kanchanpur</field>
+			<field name="state_id">7</field>
+		</record>
+	</data>
+</odoo>

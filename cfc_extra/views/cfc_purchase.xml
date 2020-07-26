@@ -1,0 +1,27 @@
+<odoo>
+	<data>
+		<record id="view_purchase_order_inherit" model="ir.ui.view">
+			<field name="name"> view.purchase.order.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='taxes_id']" position="before">
+					<field name="unit_amount" />
+				</xpath>
+				<xpath expr="//field[@name='date_planned']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='amount_untaxed']" position="replace">
+					<field name="amount_untaxed" string="Taxable Amount" />
+				</xpath>
+				<xpath expr="//button[@name='action_rfq_send']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//button[@name='print_quotation']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

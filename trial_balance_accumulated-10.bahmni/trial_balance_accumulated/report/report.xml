@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+  <data>
+    <record id='account_financial_report_qweb.action_report_trial_balance_xlsx' model='ir.actions.report.xml'>
+      <field name="report_name">trial_balance_accumulated.report_trial_balance_xlsx</field>
+    </record>
+  </data>
+</odoo>

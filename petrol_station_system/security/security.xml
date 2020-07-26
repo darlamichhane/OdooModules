@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record model='res.groups' id='petrol_station_system.user'>
+            <field name="name">AB Petroleum User</field>
+        </record>
+    </data>
+</odoo>

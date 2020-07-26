@@ -1,0 +1,219 @@
+<odoo>
+	<data>
+
+		<!-- // Menu for sales which enables customer,quotation,salesorder and 
+			products /// -->
+		<menuitem name="Sales" id="menu_base_partner"
+			groups="access_right.salesman_user,account.group_account_manager"
+			sequence="6" />
+
+		<menuitem id="menu_sales" name="Sales"
+			parent="menu_base_partner" groups="access_right.salesman_user"
+			sequence="5" />
+
+
+		<!-- // sales-ends /// -->
+
+		<menuitem id="discount_ext.menu_discount_ext"
+			name="Discount Setup" parent="account.menu_finance_reports"
+			action="discount_ext.action_view_discount_per"
+			groups="access_right.salesman_user" />
+
+		<!-- //Menu for accounting which enables accounting menus /// -->
+
+		<menuitem name="Accounting" id="account.menu_finance"
+			groups="access_right.salesman_user"
+			web_icon="account,static/description/icon.png" sequence="40" />
+		<menuitem id="account.menu_finance_reports" name="Reports"
+			parent="account.menu_finance" sequence="5"
+			groups="access_right.salesman_user" />
+
+
+		<!-- // account-ends /// //Menu for enabling doctor-count reports /// -->
+
+		<menuitem id="doctor_info.acc_doctor_report"
+			name="Doctor Count Report" action="doctor_info.action_doctor_wizard"
+			parent="account.menu_finance_reports"
+			groups="access_right.salesman_user" />
+
+		<!-- //count-report-ends /// //Access denied to normal and incharge users 
+			but acccess to admin and advisor of accounts // // Purchase hidden /// -->
+		<record model="ir.ui.menu" id="account.menu_finance_payables">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- // Purchase hidden ends /// // Business Intelligence hidden /// -->
+		<record model="ir.ui.menu"
+			id="account.account_reports_business_intelligence_menu">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!--// Business Intelligence hidden ends /// // Accounting submenu configuration 
+			hidden /// -->
+		<record model="ir.ui.menu"
+			id="account.menu_finance_configuration">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+		<!-- // Accounting submenu configuration hidden ends /// // Salesperson 
+			payements hidden // -->
+		<record model="ir.ui.menu"
+			id="salesperson_payments.sub_mass_payment_report">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- // Salesperson payements hidden-ends // // Doctor count reports hidden 
+			/// -->
+		<record model="ir.ui.menu" id="doctor_info.sub_crmsales_report">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!--// Doctor count reports hidden ends /// // Sales person reports hidden 
+			// -->
+		<record model="ir.ui.menu"
+			id="discount_ext.acc_salesperson_ext_report">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+
+
+		<!-- DOCtor MEnu in sales -->
+
+		<record model="ir.ui.menu" id="doctor_info.menu_doctor">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		// Discount setup hidden // -->
+		<!--<record model="ir.ui.menu" id="discount_ext.menu_discount_ext"> -->
+		<!--<field name="groups_id" eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]"/> -->
+		<!--</record> -->
+
+		<!-- // Discount setup hidden ends // //Sales menu configuration hidden 
+			// -->
+		<record model="ir.ui.menu" id="sales_team.menu_sale_config">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		<!--//Sales menu configuration hidden ends // //Sales menu invoicing hidden 
+			// -->
+		<record model="ir.ui.menu" id="sale.menu_sale_invoicing">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+		<!-- //Sales menu invoicing hidden ends// //Sales menu reports hidden // -->
+		<record model="ir.ui.menu" id="sales_team.menu_sale_report">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_manager')])]" />
+		</record>
+		<!--//Sales menu reports hidden ends // -->
+
+
+		<record model="ir.ui.menu" id="purchase.menu_purchase_config">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		<record model="ir.ui.menu"
+			id="stock.menu_stock_config_settings">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('stock.group_stock_manager')])]" />
+		</record>
+
+
+
+		<record model="ir.ui.menu"
+			id="stock.menu_stock_unit_measure_stock">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+
+
+		<record model="ir.ui.menu"
+			id="stock.menu_product_in_config_stock">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+
+
+
+		<record model="ir.ui.menu"
+			id="stock.menu_reordering_rules_config">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+		<record model="ir.ui.menu" id="stock.menu_stock_scrap">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+		<record model="ir.ui.menu" id="stock.menu_stock_sched">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+		<record model="ir.ui.menu"
+			id="bahmni_stock.menu_stock_batch_future_forecast">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		<!-- //Sales menu invoicing hidden ends// -->
+		<!-- Department wise ! -->
+		<record model="ir.ui.menu"
+			id="department_expense.acc_department_qweb">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- Purchase book wise ! -->
+		<record model="ir.ui.menu"
+			id="purchase_book.purchase_book_report_child_menu">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- Journal pdf payment ! -->
+		<record model="ir.ui.menu" id="journal_qweb.acc_journal_qweb">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- Sales-book payment ! -->
+		<record model="ir.ui.menu"
+			id="salesperson_qweb.acc_salesperson_qweb">
+			<field name="groups_id"
+				eval="[(6,0,[ref('access_right.salesman_user'),ref('account.group_account_user')])]" />
+		</record>
+		<!-- department income payment ! -->
+		<record model="ir.ui.menu"
+			id="department_qweb.acc_department_qweb">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+
+
+		// refund button control for only incharge users //// -->
+		<record id="account_invoice_form" model="ir.ui.view">
+			<field name="name">account.invoice.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath
+					expr="//button[@name='%(account.action_account_invoice_refund)d']"
+					position="replace">
+					<button name="%(account.action_account_invoice_refund)d"
+						type='action' string='Refund Invoice'
+						groups="base.group_erp_manager,access_right.salesincharge_user"
+						attrs="{'invisible': ['|',('type', '=', 'out_refund'), ('state', 'not in', ('open','proforma2','paid'))]}" />
+				</xpath>
+			</field>
+		</record>
+
+		<!-- // refund button control for only incharge users ends //// -->
+
+		<record model="ir.ui.menu"
+			id="invoice_sale.invoice_excel_salebook_report_child_menu">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('account.group_account_user')])]" />
+		</record>
+	</data>
+</odoo>

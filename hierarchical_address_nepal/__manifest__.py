@@ -1,0 +1,28 @@
+{
+    'name': 'Hierarchical Address of Nepal',
+    'version': '10.0.1',
+    'summary': 'This app will add the total 753 local levels of Nepal with respective District and State of Nepal.',
+    'description': "This app will add the total 753 local levels of Nepal with respective District and State of Nepal",
+    'category': 'Extra Tools',
+    'author': 'DARSHAN LAMICHHANE',
+    'website': 'http://www.aspatalservices.com',
+    'license': 'AGPL-3',
+    'data': [
+        'security/ir.model.access.csv',
+        'data/state_address.xml',
+        'data/district_address.xml',
+        'data/local_address_state1.xml',
+        'data/local_address_state2.xml',
+        'data/local_address_state3.xml',
+        'data/local_address_state4.xml',
+        'data/local_address_state5.xml',
+        'data/local_address_state6.xml',
+        'data/local_address_state7.xml',
+        'views/res_partner_view.xml',
+        'views/address.xml'
+    ],
+    'depends': ['base'],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

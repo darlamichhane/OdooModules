@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+        <!--        Province No. 1-->
+        <record id="state_one" model="res.nepal.state">
+			<field name="name">Province 1</field>
+            <field name="code">State1</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 2-->
+        <record id="state_two" model="res.nepal.state">
+			<field name="name">Province 2</field>
+            <field name="code">State2</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 3-->
+        <record id="state_three" model="res.nepal.state">
+			<field name="name">Province 3 Bagmati</field>
+            <field name="code">State3</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 4-->
+        <record id="state_four" model="res.nepal.state">
+			<field name="name">Province 4 Gandaki</field>
+            <field name="code">State4</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 5-->
+        <record id="state_five" model="res.nepal.state">
+			<field name="name">Province 5</field>
+            <field name="code">State5</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 6-->
+        <record id="state_six" model="res.nepal.state">
+			<field name="name">Province 6 karnali</field>
+            <field name="code">State6</field>
+            <field name="country_id">168</field>
+		</record>
+
+        <!--        Province No. 7-->
+        <record id="state_seven" model="res.nepal.state">
+			<field name="name">Province 7 Sudurpaschim</field>
+            <field name="code">State7</field>
+            <field name="country_id">168</field>
+		</record>
+
+    </data>
+</odoo>

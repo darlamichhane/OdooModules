@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            string="Agreement"
+            id="action_report_sales_agreement"
+            model="agreement"
+            report_type="qweb-pdf"
+            name="petrol_station_system.report_salesagreement"
+            file="petrol_station_system.report.report_salesagreement"
+         />
+    </data>
+</odoo>

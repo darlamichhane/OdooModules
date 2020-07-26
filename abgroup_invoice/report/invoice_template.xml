@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="invoice_template_report_first">
+			<t t-call="abgroup_invoice.external_layout_invoice">
+				<div class="page">
+					<div class="row" style="font-size:14px">
+						<center>
+							<h2>
+								<span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">TAX INVOICE</span>
+								<span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+								<span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+								<span t-if="o.type == 'out_refund'">Credit Note</span>
+							</h2>
+						</center>
+						<div class="col-xs-12">
+							<div class="col-xs-6" align="left" style="padding-bottom:10px;margin-left:-8px;">
+								SELLER'S TPIN : <t t-esc="o.company_id.vat" /><br />
+								BUYER'S NAME : <t t-esc="o.partner_id.name" /><br />
+								ADDRESS :  <t t-esc="o.partner_id.street2" /><br />
+								BUYER'S TPIN : <!--<t t-esc="o." />--><br />
+								Mode of Payment : CASH/ CHEQUE/ CREDIT/ OTHERS <br />
+							</div>
+							<div class="col-xs-6" align="right" style="padding-bottom:10px;">
+								INVOICE NO. : <b><t t-esc="o.number" /></b><br />
+								ISSUE DATE : <t t-esc="o.date" /><br />
+								TRANSACTION DATE : <t t-esc="o.date_invoice" /><br />
+							</div>
+
+							<table class="table table-bordered">
+								<tr>
+									<td width="2%"><b>S.N </b></td>
+									<td width="20%"><b> Parts No. </b></td>
+									<td width="20%"><b>Description </b></td>
+									<td width="12%" ><b>QTY.</b></td>
+									<td width="12%" align="center"><b>Unit Price</b></td>
+									<td width="8%" align="center"><b>Amount </b></td>
+								</tr>
+								<tr t-foreach="o.invoice_line_ids" t-as="l">
+									<td><t t-esc="l_index+1" /></td>
+									<td><t t-esc="l.name" /></td>
+									<td><t t-esc="l.name" /></td>
+									<td><span t-field="l.quantity" /></td>
+									<td align="right"><span t-field="l.price_unit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td align="right"><span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td rowspan="5" colspan="3"><b>In Words Rs. </b><span style="border-bottom: 1px dotted" t-esc="o.amount_to_text(o.amount_total, 'NPR')" /></td>
+									<td colspan="2" align="right"><b>Sub Total</b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>% Discount</b></td>
+									<td align="right"><!--<span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />--></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>Taxable Amount</b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>% VAT</b></td>
+									<td align="right"><span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>GRAND TOTAL</b></td>
+									<td align="right"><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+							</table>
+
+							<div class="col-xs-12" style="padding-left:10px;margin-top:12px;">
+								<div class="col-xs-4" align="left">
+									<b>Customer's Signature</b>
+								</div>
+								<div class="col-xs-4" align="center">
+									<b>E.&amp; O.E.</b>
+								</div>
+								<div class="col-xs-4" align="right">
+									<b>for: GLOBAL AUTO POINT</b>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<template id="invoice_template_report_second">
+			<t t-call="abgroup_invoice.external_layout_invoice">
+				<div class="page">
+					<div class="row" style="font-size:14px">
+						<center>
+							<h2>
+								<span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">INVOICE</span>
+								<span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice</span>
+								<span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice</span>
+								<span t-if="o.type == 'out_refund'">Credit Note</span>
+							</h2>
+						</center>
+						<div class="col-xs-12">
+							<div class="col-xs-6" align="left" style="padding-bottom:10px;margin-left:-8px;">
+								SELLER'S TPIN : <t t-esc="o.company_id.vat" /><br />
+								BUYER'S NAME : <t t-esc="o.partner_id.name" /><br />
+								ADDRESS :  <t t-esc="o.partner_id.street2" /><br />
+								BUYER'S TPIN : <!--<t t-esc="o." />--><br />
+								Mode of Payment : CASH/ CHEQUE/ CREDIT/ OTHERS <br />
+							</div>
+							<div class="col-xs-6" align="right" style="padding-bottom:10px;">
+								INVOICE NO. : <b><t t-esc="o.number" /></b><br />
+								ISSUE DATE : <t t-esc="o.date" /><br />
+								TRANSACTION DATE : <t t-esc="o.date_invoice" /><br />
+							</div>
+
+							<table class="table table-bordered">
+								<tr>
+									<td width="2%"><b>S.N </b></td>
+									<td width="20%"><b> Parts No. </b></td>
+									<td width="20%"><b>Description </b></td>
+									<td width="12%" ><b>QTY.</b></td>
+									<td width="12%" align="center"><b>Unit Price</b></td>
+									<td width="8%" align="center"><b>Amount </b></td>
+								</tr>
+								<tr t-foreach="o.invoice_line_ids" t-as="l">
+									<td><t t-esc="l_index+1" /></td>
+									<td><t t-esc="l.name" /></td>
+									<td><t t-esc="l.name" /></td>
+									<td><span t-field="l.quantity" /></td>
+									<td align="right"><span t-field="l.price_unit" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+									<td align="right"><span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td rowspan="5" colspan="3"><b>In Words Rs. </b><span style="border-bottom: 1px dotted" t-esc="o.amount_to_text(o.amount_total, 'NPR')" /></td>
+									<td colspan="2" align="right"><b>Sub Total</b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>% Discount</b></td>
+									<td align="right"><!--<span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />--></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>Taxable Amount</b></td>
+									<td align="right"><span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>% VAT</b></td>
+									<td align="right"><span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><b>GRAND TOTAL</b></td>
+									<td align="right"><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' /></td>
+								</tr>
+							</table>
+
+							<div class="col-xs-12" style="padding-left:10px;margin-top:12px;">
+								<div class="col-xs-4" align="left">
+									<b>Customer's Signature</b>
+								</div>
+								<div class="col-xs-4" align="center">
+									<b>E.&amp; O.E.</b>
+								</div>
+								<div class="col-xs-4" align="right">
+									<b>for: GLOBAL AUTO POINT</b>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<template id="invoice_template_report_id">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="abgroup_invoice.invoice_template_report_first" t-lang="o.name" />
+					<t t-call="abgroup_invoice.invoice_template_report_second" t-lang="o.name" />
+					<t t-call="abgroup_invoice.invoice_template_report_second" t-lang="o.name" />
+					<t t-call="abgroup_invoice.invoice_template_report_second" t-lang="o.name" />
+				</t>
+			</t>
+		</template>
+
+		<template id="invoice_report_duplicate_first" inherit_id="abgroup_invoice.invoice_template_report_first" primary="True">
+			<xpath expr="//h2" position="replace">
+				<h2>
+					<span>
+						<div
+							style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:400px;text-align:bottom;width:100%;">
+							<p style="font-size:100px;">Copy of Original <t t-esc="o.count" /></p>
+						</div>
+					</span>
+					<span t-if="o.type == 'out_refund'">REFUND</span>
+					<span t-if="o.type == 'out_invoice'">TAX INVOICE</span>
+				</h2>
+			</xpath>
+		</template>
+
+		<template id="invoice_report_duplicate_second" inherit_id="abgroup_invoice.invoice_template_report_second" primary="True">
+			<xpath expr="//h2" position="replace">
+				<h2>
+					<span>
+						<div
+							style="position:absolute;opacity:0.45;z-index:-1;transform:rotate(300deg);-webkit-transform:rotate(300deg);top:400px;text-align:bottom;width:100%;">
+							<p style="font-size:100px;">Copy of Original <t t-esc="o.count" /></p>
+						</div>
+					</span>
+					<span t-if="o.type == 'out_refund'">REFUND</span>
+					<span t-if="o.type == 'out_invoice'">INVOICE</span>
+				</h2>
+			</xpath>
+		</template>
+
+		<template id="invoice_report_duplicate_main">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="abgroup_invoice.invoice_report_duplicate_first" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+
+	</data>
+</odoo>

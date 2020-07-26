@@ -1,0 +1,138 @@
+<odoo>
+	<data>
+		<!-- Transport Manifest form view -->
+		<record id="view_transport_manifest" model="ir.ui.view">
+			<field name="name">view.transport.manifest</field>
+			<field name="model">transport.manifest</field>
+			<field eval="12" name="priority" />
+			<field name="arch" type="xml">
+				<form string="Transport Manifest">
+					<header>
+						<button name="action_confirm" type="object" string="Confirm"
+							states="draft" class="oe_highlight" groups="base.group_user" />
+						<button name="print_manifest" string="Print" type="object"
+							states="manifest" groups="base.group_user" />
+						<button name="action_cancel" string="Cancel" type="object"
+							states="manifest" groups="base.group_user" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,manifest" />
+					</header>
+					<sheet string="Transport Manifest">
+						<div class="oe_title">
+							<label string="Draft Manifest "
+								attrs="{'invisible': [('state','not in',('draft'))]}" />
+							<label string="Manifest Order " attrs="{'invisible': [('state','in',('draft'))]}" />
+							<h1>
+								<field name="number" readonly="1" />
+							</h1>
+							<group>
+								<group>
+									<field name="vehicle_id" options="{'no_create': True}"/>
+									<field name="driver_id" domain="[('is_driver', '=', True)]" options="{'no_create': True}"/>
+								</group>
+								<group>
+									<field name="date_manifest" />
+									<field name="send_from" options='{"no_create": True,"no_open": True}'/>
+									<field name="send_to" options='{"no_create": True,"no_open": True}'/>
+									<!--<field name="company_id" groups="base.group_multi_company"/>-->
+								</group>
+							</group>
+						</div>
+						<notebook>
+							<page string="Manifest Orders">
+								<field name="manifest_line_ids">
+									<tree string="Manifest Order" editable="bottom">
+										<field name="invoice_id" />
+										<field name="quantity" />
+										<field name="name" />
+										<field name="consignor_id" />
+										<field name="consignee_id" />
+										<field name="address" />
+										<field name="vat_amount" string="Total" sum="Total"/>
+										<field name="due_amount" invisible="1"/>
+										<field name="topay_amount" invisible="1"/>
+										<field name="paid_amount" invisible="1"/>
+										<field name="transit_id" options="{'no_create': True}"/>
+										<field name="remarks" />
+									</tree>
+									<form>
+										<group>
+											<group>
+												<field name="invoice_id"/>
+												<field name="consignor_id" />
+											</group>
+											<group>
+												<field name="quantity" />
+												 <field name="consignee_id" />
+											</group>
+										</group>
+									</form>
+								</field>
+								<!--<group class="oe_subtotal_footer oe_right">
+									<field name="amount_untaxed"/>
+									<field name="amount_tax"/>
+									<field name="amount_total" class="oe_subtotal_footer_separator"/>
+								</group>-->
+							</page>
+						</notebook>
+						<field name="notes" placeholder="Additional Notes" />
+
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+
+		<!-- Tree view of Transport Manifest -->
+		<record id="transport_manifest_tree" model="ir.ui.view">
+			<field name="name">transport.manifest.tree</field>
+			<field name="model">transport.manifest</field>
+			<field name="arch" type="xml">
+				<tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Transport Manifest">
+					<field name="number" />
+					<field name="date_manifest" />
+					<field name="vehicle_id" />
+					<field name="driver_id" />
+					<field name="send_from" />
+					<field name="send_to" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Search view of Transport Manifest -->
+		<record id="transport_manifest_search" model="ir.ui.view">
+			<field name="name">transport_manifest.search</field>
+			<field name="model">transport.manifest</field>
+			<field name="arch" type="xml">
+				<search string="Transport Manifest">
+					<field name="number" />
+					<filter name="draft" string="Draft" domain="[('state','=','draft')]" />
+					<filter name="manifest" string="Manifest" domain="[('state','=','manifest')]" />
+				<seperator />
+					<filter domain="[('user_id','=',uid)]" help="My Manifests"/>
+					<group string="Group By">
+						<filter name="by_vehicle" string="Vehicle" domain="[]"
+							context="{'group_by':'vehicle_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Action of Transport Manifest Tree/Form -->
+		<record id="action_transport_manifest" model="ir.actions.act_window">
+			<field name="name">Transport Manifest</field>
+			<field name="res_model">transport.manifest</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<menuitem id="menu_tranpsort_manifest" action="action_transport_manifest" name="Transport Manifest"
+			parent="menu_transport_management" sequence="0" />
+
+	</data>
+</odoo>

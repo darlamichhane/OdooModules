@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report id="action_report_salesperson"
+			model="report.salesperson_qweb.report_salesperson"
+			string="Salesperson wise Income Report" report_type="qweb-html"
+			name="salesperson_qweb.report_salesperson"
+			file="salesperson_qweb.report_salesperson" />
+	</data>
+</odoo>

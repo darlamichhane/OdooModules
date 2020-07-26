@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report id="action_report_stock_consumption"
+			model="report.stock_consumption.report_stock_consumption"
+			string="Stock Consumption Report" report_type="qweb-pdf"
+			name="stock_consumption.report_stock_consumption"
+			file="stock_consumption.report_stock_consumption" />
+	</data>
+</odoo>

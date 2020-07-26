@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+ <template id="assets_backend" name="aar_pos_order_notes assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+
+            <script type="text/javascript" src="/pos_pricetotal/static/src/js/buttons.js"/>
+            <script type="text/javascript" src="/pos_pricetotal/static/src/js/order.js"/>
+            <script type="text/javascript" src="/pos_pricetotal/static/src/js/popups.js"/>
+
+            <link rel="stylesheet" href="/pos_pricetotal/static/src/css/pos.css"/>
+        </xpath>
+    </template>
+</odoo>

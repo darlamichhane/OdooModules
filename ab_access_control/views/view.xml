@@ -1,0 +1,114 @@
+<odoo>
+	<data>
+
+		<!-- // Menu for sales which enables customer,quotation,salesorder and
+			products /// -->
+		<menuitem name="Sales" id="menu_base_partner"
+			groups="ab_access_control.salesman_user,account.group_account_manager"
+			sequence="6" />
+
+		<menuitem id="menu_sales" name="Sales"
+			parent="menu_base_partner" groups="ab_access_control.salesman_user"
+			sequence="5" />
+
+
+		<!-- //Menu for accounting which enables accounting menus /// -->
+
+		<menuitem name="Accounting" id="account.menu_finance"
+			groups="ab_access_control.salesman_user"
+			web_icon="account,static/description/icon.png" sequence="40" />
+		<menuitem id="account.menu_finance_reports" name="Reports"
+			parent="account.menu_finance" sequence="5"
+			groups="ab_access_control.salesman_user" />
+
+<!--		Purchase menu Hidden-->
+		<record model="ir.ui.menu" id="account.menu_finance_payables">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]" />
+		</record>
+
+<!--		Business Intelligence Hidden-->
+		<record model="ir.ui.menu"
+			id="account.account_reports_business_intelligence_menu">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]" />
+		</record>
+
+		<!--// Business Intelligence hidden ends /// // Accounting submenu configuration
+			hidden /// -->
+		<record model="ir.ui.menu"
+			id="account.menu_finance_configuration">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		<!--  //Sales menu configuration hidden
+			// -->
+		<record model="ir.ui.menu" id="sales_team.menu_sale_config">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+		<!--//Sales menu configuration hidden ends // //Sales menu invoicing hidden
+			// -->
+		<record model="ir.ui.menu" id="sale.menu_sale_invoicing">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+			<!-- //Sales menu invoicing hidden ends// //Sales menu reports hidden // -->
+		<record model="ir.ui.menu" id="sales_team.menu_sale_report">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+		<record model="ir.ui.menu" id="account.menu_finance_entries">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+		<record model="ir.ui.menu" id="account.menu_finance_reports">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+<!--		Product template action menu in Sales hidden-->
+		<record model="ir.ui.menu" id="sale.menu_product_template_action">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+<!--		Product View of POS hidden-->
+		<record model="ir.ui.menu" id="point_of_sale.menu_pos_products">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+<!--		Product Template Action od Account menu hidden-->
+		<record model="ir.ui.menu" id="account.menu_product_template_action">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('ab_access_control.account_user')])]"/>
+		</record>
+
+<!--		Point of sale Configuration Hidden-->
+		<record model="ir.ui.menu" id="point_of_sale.menu_point_config_product">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]"/>
+		</record>
+
+<!--		Purchase Configuration Hidden-->
+		<record model="ir.ui.menu" id="purchase.menu_purchase_config">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager')])]" />
+		</record>
+
+<!--Inventory Menu Hidden-->
+		<record model="ir.ui.menu"
+			id="stock.menu_stock_root">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_erp_manager'),ref('stock.group_stock_manager')])]" />
+		</record>
+
+
+    </data>
+</odoo>

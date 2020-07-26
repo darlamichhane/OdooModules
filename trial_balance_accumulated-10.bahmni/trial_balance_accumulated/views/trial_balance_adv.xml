@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (C)opyright Aadarsha Shrestha, 2019. See LICENSE for full copyright and licensing details.-->
+<odoo>
+	<template id="report_trial_balance_qweb_lines_header" inherit_id="account_financial_report_qweb.report_trial_balance_qweb_lines_header">
+    <xpath expr="//div//div//div[8]" position="replace">
+      <t t-if="not o.is_accumulated_balance">
+        <!--## Ending balance-->
+        <div class="act_as_cell" style="width: 9.64%;">Ending balance</div>
+      </t>
+    </xpath>
+    
+		<xpath expr="//div//div//div[7]" position="replace">
+      <t t-if="not o.is_accumulated_balance">
+        <!--## Period balance-->
+        <div class="act_as_cell" style="width: 9.64%;">Period balance</div>
+      </t>
+		</xpath>
+
+  </template>
+
+	<template id="report_trial_balance_qweb_line" inherit_id="account_financial_report_qweb.report_trial_balance_qweb_line">
+
+		<xpath expr="//div[8]" position="replace">
+			<t t-if="not o.is_accumulated_balance">
+				<!--## Ending balance-->
+                <div class="act_as_cell amount">
+                   <t t-if="type == 'account_type'">
+                       <t t-if="line.account_id">
+                        <t t-set="domain"
+                          t-value="[('account_id', '=', line.account_id.id)]"/>
+                        <span>
+                                <a t-att-data-domain="domain"
+                               t-att-data-res-model="'account.move.line'"
+                               class="o_account_financial_reports_web_action_monetary_multi"
+                               t-att-style="style">
+                            <t t-att-style="style" t-raw="line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                        </span>
+                    </t>
+                    <t t-if="line.account_group_id">
+                       <t t-set="domain"
+                          t-value="[('account_id', 'in', line.compute_account_ids.ids)]"/>
+                          <span>
+                            <a t-att-data-domain="domain"
+                               t-att-data-res-model="'account.move.line'"
+                               class="o_account_financial_reports_web_action_monetary_multi"
+                               t-att-style="style">
+                               <t t-att-style="style" t-raw="line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                          </span>
+                       </t>
+                   </t>
+                   <t t-if="type == 'partner_type'">
+                      <t t-set="domain"
+                      t-value="[('account_id', '=', line.report_account_id.account_id.id),
+                      ('partner_id', '=', line.partner_id.id)]"/>
+                      <span>
+                         <a t-att-data-domain="domain"
+                            t-att-data-res-model="'account.move.line'"
+                            class="o_account_financial_reports_web_action_monetary_multi"
+                            t-att-style="style">
+                            <t t-att-style="style" t-raw="line.final_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                       </span>
+                    </t>
+                </div>
+			</t>
+		</xpath>
+
+		<xpath expr="//div[7]" position="replace">
+			<t t-if="not o.is_accumulated_balance">
+				<!--## Period balance-->
+          <div class="act_as_cell amount">
+            <t t-if="type == 'account_type'">
+              <t t-if="line.account_id">
+                  <t t-set="domain" t-value="[('account_id', '=', line.account_id.id),('date', '&gt;=', line.report_id.date_from),('date', '&lt;=', line.report_id.date_to)]"/>
+                     <span>
+                     	<a t-att-data-domain="domain"
+                    		t-att-data-res-model="'account.move.line'"
+                      	class="o_account_financial_reports_web_action_monetary_multi"
+                        t-att-style="style">
+                        	<t t-att-style="style" t-raw="line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                     	</span>
+                   </t>
+                   <t t-if="line.account_group_id">
+                   	<t t-set="domain"
+                    	t-value="[('account_id', 'in', line.compute_account_ids.ids),
+                      ('date', '&gt;=', line.report_id.date_from),
+                      ('date', '&lt;=', line.report_id.date_to)]"/>
+                    <span>
+                    	<a t-att-data-domain="domain"
+                      	t-att-data-res-model="'account.move.line'"
+                        class="o_account_financial_reports_web_action_multi"
+                        t-att-style="style">
+                      <t t-att-style="style" t-raw="line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                    </span>
+                  </t>
+                </t>
+               	<t t-if="type == 'partner_type'">
+                	<t t-set="domain"
+                  	t-value="[('account_id', '=', line.report_account_id.account_id.id),
+                    ('partner_id', '=', line.partner_id.id),
+                    ('date', '&gt;=', line.report_account_id.report_id.date_from),
+                    ('date', '&lt;=', line.report_account_id.report_id.date_to)]"/>
+                  <span>
+                  	<a t-att-data-domain="domain"
+                    	t-att-data-res-model="'account.move.line'"
+                      class="o_account_financial_reports_web_action_monetary_multi"
+                      t-att-style="style">
+                    <t t-att-style="style" t-raw="line.period_balance" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></a>
+                    </span>
+                  </t>
+                </div>
+				</t>
+			</xpath>
+
+
+	</template>
+
+	<template id="report_trial_balance_base" inherit_id="account_financial_report_qweb.report_trial_balance_base">
+		
+			<xpath expr="//t[@t-foreach='o.account_ids.filtered(lambda a: not a.hide_line)']" position="after">
+				<t t-if="o.is_accumulated_balance">
+					<div class="act_as_cell left"></div>
+					<div class="act_as_cell left">
+						<strong>Total</strong>
+					</div>
+					<div class="act_as_cell left"></div>
+					<div class="act_as_cell amount">
+                        <span><strong><t t-esc="sum(o.account_ids.filtered(lambda r: r.account_id).mapped('debit'))" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></strong></span>
+					</div>
+					
+					<div class="act_as_cell amount">
+            <span><strong><t t-esc="sum(o.account_ids.filtered(lambda r: r.account_id).mapped('credit'))" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></strong></span>
+					</div>
+				</t>
+			</xpath>
+	</template>
+</odoo>

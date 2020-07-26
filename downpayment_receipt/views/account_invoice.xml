@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<data>
+		<record id="account_invoice_refund_set_inherit" model="ir.ui.view">
+			<field name="name">account.invoice.refunt.set.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='amount_total']" position="after">
+					<field name="has_refund"  invisible="1"/>
+					<field name="to_refund_amount" attrs="{'invisible':[('has_refund','=',False)]}"  />
+				</xpath>
+				<xpath expr="//field[@name='amount_untaxed']" position="before">
+					<field name="tot_deposited" attrs="{'invisible':[('has_refund','=',False)]}"  />
+					<field name="total_spend" attrs="{'invisible':[('has_refund','=',False)]}"  />
+				</xpath>
+				<!-- <xpath expr="//form/sheet/label[@string='Refund']" position="replace">
+                        <label string="Refund" attrs="{'invisible': ['|',('state','in',('draft','proforma','proforma2')), '|', ('type','&lt;&gt;','out_refund'),('has_refund','=',True)]}"/>
+                </xpath> -->
+			</field>
+		</record>
+
+
+		<record id="inherit_account_config_settings_view_deposit" model="ir.ui.view">
+		<field name="name">inherit.account.config.deposit.settings.view</field>
+		<field name="model">account.config.settings</field>
+		<field name="inherit_id" ref="account.view_account_config_settings" />
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='accounting']" position="after">
+				<group string="Receipt Product" name="extra_receipt_product">
+					<field name="receipt_product_id" widget="many2many_tags" />
+					
+				</group>
+				<group string="Receipt Journal" name="extra_receipt_journal">
+					<field name="receipt_journal_id" />
+					
+				</group>
+			</xpath>
+
+		</field>
+	</record>
+
+	</data>
+</odoo>

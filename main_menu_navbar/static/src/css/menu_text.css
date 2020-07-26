@@ -1,0 +1,10 @@
+.navbar-inverse .navbar-text {
+  color: White;
+  font-weight: bold;
+  font-size: 15px;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: White;
+  font-weight: bold;
+  font-size: 15px;
+}

@@ -1,0 +1,63 @@
+<odoo>
+	<data>
+		<!-- Transit form view -->
+		<record id="transit_form" model="ir.ui.view">
+			<field name="name">transit.form</field>
+			<field name="model">transit</field>
+			<field name="arch" type="xml">
+				<form string="Transit">
+					<sheet string="Transit">
+						<group>
+							<group>
+								<field name="name" />
+								<field name="code" />
+<!--								<field name="from_number" />-->
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view of Transit -->
+		<record id="transit_tree" model="ir.ui.view">
+			<field name="name">transit.tree</field>
+			<field name="model">transit</field>
+			<field name="priority" eval="14" />
+			<field name="arch" type="xml">
+				<tree string="Transit">
+					<field name="name" />
+					<field name="code" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Search view of Transit -->
+		<record id="transit_search" model="ir.ui.view">
+			<field name="name">transit.search</field>
+			<field name="model">transit</field>
+			<field name="arch" type="xml">
+				<search string="Transit">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<!-- Action of Transit Tree/Form -->
+		<record id="action_transit" model="ir.actions.act_window">
+			<field name="name">Transit</field>
+			<field name="res_model">transit</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<menuitem id="menu_transit" action="action_transit"
+			name="Transit" parent="menu_transport_configuration" sequence="3" />
+
+	</data>
+</odoo>

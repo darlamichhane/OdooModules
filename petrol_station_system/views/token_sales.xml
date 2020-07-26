@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="token_sales_form" >
+            <field name="model">token.sales</field>
+            <field name="name">Token Sales</field>
+            <field name="arch" type="xml">
+                <form string="Credit / Token Sales">
+                    <header>
+                        <button name="confirm_button" states="draft" string="Confirm" type="object" class="btn-primary"/>
+                        <button name="action_approved" states="open" string="Validate" type="object" icon="fa-caret-right" class="btn-primary"/>
+                        <button name="action_print" string="Print" type="object" icon="fa-print" groups="base.group_user"/>
+						<button name="action_cancel" states="draft" string="Cancel" icon="fa-trash-o" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+							<label string="Sales Receipt No " />
+							<h2>
+								<field name="receipt_id" readonly="1" />
+							</h2>
+						</div>
+                        <group col="4">
+                            <field name="partner_id" options='{"no_create": True,"no_open": True}' />
+                            <field name="claim_date" />
+                        </group>
+                        <group col="4">
+                            <field name="sales_mode" options='{"no_create":1, "no_create_edit":1}' />
+                            <field name="vehicle_no" />
+                        </group>
+                        <group col="4">
+                            <field name="number" attrs="{'invisible': [('sales_mode','!=', 'token')],'required':[('sales_mode','=', 'token')]}" />
+<!--                            <field name="ref_number" attrs="{'invisible': [('sales_mode','!=', 'token')],'required':[('sales_mode','=', 'token')]}" />-->
+                            <field name="sale_remarks" attrs="{'required': [('sales_mode','=', 'credit')]}" />
+                        </group>
+                        <notebook>
+                            <page string="Order Lines" class="oe_page_title" >
+                                    <field name="token_sales_ids">
+                                        <tree editable="bottom">
+                                            <field name="number" />
+                                            <field name="product_id" />
+                                            <field name="order_qty" sum="Total"/>
+                                            <field name="product_qty" sum="Total" />
+                                            <field name="uom_id" />
+                                            <field name="price_unit" sum="Total" />
+                                            <field name="price_total" sum="Total"/>
+                                            <field name="unit_amount"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="token_sales_tree" model="ir.ui.view">
+			<field name="name">token.sales.tree</field>
+			<field name="model">token.sales</field>
+			<field name="arch" type="xml">
+				<tree string="Credit / Token Sales">
+					<field name="receipt_id" />
+					<field name="partner_id" />
+					<field name="sales_status" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="token_sales_search" model="ir.ui.view">
+			<field name="name">token_sales.search</field>
+			<field name="model">token.sales</field>
+			<field name="arch" type="xml">
+				<search string="Token Sales">
+					<field name="ref_number" />
+					<group string="Filter By">
+
+					</group>
+					<group string="Group By">
+
+					</group>
+				</search>
+			</field>
+		</record>
+
+        <record id="token_sales_action" model="ir.actions.act_window">
+            <field name="name">Credit / Token Sales</field>
+            <field name="res_model">token.sales</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to create Credit / Token Receipt.
+				</p>
+			</field>
+<!--            <field name="target">new</field>-->
+        </record>
+        <menuitem id="menu_token_sales" name="Credit / Token Sales" action="token_sales_action" parent="menu_petrol_station_management" sequence="13"  />
+    </data>
+</odoo>

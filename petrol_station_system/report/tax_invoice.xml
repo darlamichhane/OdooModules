@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+			id="report_tax_invoice"
+			model="account.invoice"
+			string="Tax Invoice Report"
+			report_type="qweb-pdf"
+			name="petrol_station_system.invoice_template_report_id"
+			file="petrol_station_system.invoice_template_report_id" />
+
+		<report
+            id="invoice_action_report_duplicate"
+            model="account.invoice"
+            string="Duplicates"
+            report_type="qweb-pdf"
+            name="petrol_station_system.invoice_report_duplicate_main"
+            file="petrol_station_system.invoice_report_duplicate_main"
+            attachment_use="False"
+        />
+
+		<record id="paperformat_abgroup_invoice" model="report.paperformat">
+			<field name="name">US Letter</field>
+			<field name="default" eval="True" />
+			<field name="format">A5</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">25</field>
+			<field name="margin_bottom">25</field>
+			<field name="margin_left">5</field>
+			<field name="margin_right">5</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="petrol_station_system.report_tax_invoice"
+			model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="petrol_station_system.paperformat_abgroup_invoice" />
+		</record>
+
+		<record id="petrol_station_system.invoice_action_report_duplicate"
+			model="ir.actions.report.xml">
+			<field name="paperformat_id" ref="petrol_station_system.paperformat_abgroup_invoice" />
+		</record>
+
+		<template id="external_layout_invoice">
+			<t t-if="o and 'company_id' in o">
+				<t t-set="company" t-value="o.company_id"></t>
+			</t>
+			<t t-if="not o or not 'company_id' in o">
+				<t t-set="company" t-value="res_company"></t>
+			</t>
+			<t t-call="petrol_station_system.external_layout_invoice_header" />
+			<t t-call="petrol_station_system.external_layout_invoice_footer" />
+			<t t-raw="0" />
+		</template>
+
+		<template id="external_layout_invoice_header">
+            <div class="header">
+               <div class="row">
+                  <div class="col-xs-12" style="padding-left:10px;font-size:14px;">
+                     <div class="col-xs-6" align="left">
+                        <b t-if="company.company_registry">VAT Number :<t t-esc="company.vat"/></b>
+                        <br />
+                     </div>
+                     <div class="col-xs-6" align="right">
+                        <b t-if="company.phone"><i class="fa fa-phone icon-large"></i><t t-esc="company.phone"/></b>
+                        <br />
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xs-12" align="center">
+                     <t t-if="company.name">
+                        <b style="font-size:25px">
+                           <t t-esc="company.name" />
+                        </b><br />
+                     </t>
+                     <t t-if="company.street">
+                        <b style="font-size:14px">
+                           <t t-esc="company.street" />
+                        </b>
+                     </t>
+                     <t t-if="company.street2">,
+                        <b style="font-size:14px">
+                           <t t-esc="company.street2" />
+                        </b>
+                     </t>
+                     <t t-if="company.state_id.name">
+                        <b style="font-size:14px">
+                           <t t-esc="company.state_id.name" />
+                        </b>
+                     </t>
+                     <t t-if="company.country_id">,
+                        <b style="font-size:14px">
+                           <t t-esc="company.country_id.name" />
+                        </b>
+                     </t>
+                  </div>
+               </div>
+            </div>
+      	</template>
+
+		<template id="external_layout_invoice_footer">
+			<div class="footer" style="padding-top:30px;font-size:12px;">
+            	<div class="row">
+               		<div class="col-xs-12" style="padding-left:10px;">
+				   		<div class="col-xs-4" align="left">
+					   		<b>Customer's Signature</b>
+				   		</div>
+				   		<div class="col-xs-4" align="center">
+					   		<b>E.&amp; O.E.</b>
+				   		</div>
+				   		<div class="col-xs-4" align="right">
+					   		<b>for: <t t-esc="o.company_id.name"/></b>
+				   		</div>
+			   		</div>
+				</div>
+         	</div>
+      	</template>
+
+	</data>
+</odoo>

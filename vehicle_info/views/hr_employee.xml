@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="inherit_hr_employee" model="ir.ui.view">
+		<field name="name">inherit.hr.employee.form</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//group/field[@name='address_id']" position="before">
+				<field name="license_no" attrs="{'required': [('is_driver','=',True)]}"/>
+			</xpath>
+			<xpath expr="//group/field[@name='department_id']" position="before">
+				<field name="is_driver"/>
+			</xpath>
+
+		</field>
+	</record>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<data>
+		<record id="account_invoice_transport_inherit" model="ir.ui.view">
+			<field name="name">account.invoice.transport.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='amount_tax']" position="before">
+					<field name="service_charge_amount" widget="monetary"
+						options="{'currency_field': 'currency_id'}" />
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

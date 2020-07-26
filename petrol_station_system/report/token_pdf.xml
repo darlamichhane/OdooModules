@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                string="Token Management"
+                id="action_report_token_management"
+                model="token.management"
+                report_type="qweb-pdf"
+                name="petrol_station_system.report_token"
+                file="petrol_station_system.report_token"
+        />
+        <record id="paperformat_landscape" model="report.paperformat">
+            <field name="name">A4 w/o header</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">15</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="petrol_station_system.action_report_token_management"
+                model="ir.actions.report.xml">
+                    <field name="paperformat_id" ref="petrol_station_system.paperformat_landscape" />
+        </record>
+
+    </data>
+</odoo>

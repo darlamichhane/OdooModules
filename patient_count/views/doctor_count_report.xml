@@ -1,0 +1,48 @@
+<odoo>
+	<data>
+		<!-- Tree view of Doctor -->
+		<record id="patient_count_view" model="ir.ui.view">
+			<field name="name">patient.count.view</field>
+			<field name="model">doctor.count.report</field>
+			<field name="arch" type="xml">
+				<tree string="Doctor" create="false" delete="false">
+					<field name="date" />
+					<field name="doctor_id" />
+					<field name="count" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_doctor_count_report_filter" model="ir.ui.view">
+			<field name="name">doctor.count.report.filter</field>
+			<field name="model">doctor.count.report</field>
+			<field name="arch" type="xml">
+				<search string="Search Doctor Report">
+					<field name="doctor_id" />
+
+					<filter string="Today" name="filter_today"
+						domain="[('date', '=', context_today().strftime('%%Y-%%m-%%d'))]" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_search_doctor_count_reports"
+			model="ir.actions.act_window">
+			<field name="name">Patient Count Report</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">doctor.count.report</field>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="patient_count_view" />
+			<field name="search_view_id"
+				ref="view_doctor_count_report_filter" />
+			<field name="context">{'search_default_filter_today':1}</field>
+		</record>
+
+		<menuitem id="sub_menu_patient_count"
+			action="action_search_doctor_count_reports"
+			name="Patient Count" parent="sales_team.menu_sales"
+			sequence="12" />
+
+	</data>
+
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view"
+			id="petrol_station_system_vehicle_creation_form_view">
+			<field name="name">Vehicle Information</field>
+			<field name="model">vehicle.info</field>
+			<field name="arch" type="xml">
+				<form string="Vehicle">
+					<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="toggle_active" type="object"
+							class="oe_stat_button" icon="fa-archive">
+							<field name="active" widget="boolean_button"
+								options='{"terminology": "archive"}' />
+						</button>
+					</div>
+						<field name="image" widget="image" class="oe_avatar" />
+						<div class="oe_title">
+<!--							<label for="name" />-->
+							<h1>
+								<field name="vehicle_model" style="width:150%%" />
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="vehicle_no" />
+								<field name="owner_id" />
+								<field name="owner_phone" />
+								<field name="owner_address" />
+								<field name="owner_pan" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="vehicle_template_kanban_view" model="ir.ui.view">
+			<field name="name">sale.vehicle.kanban</field>
+			<field name="model">vehicle.info</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="image" modifiers="{}" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+								<div class="o_kanban_image">
+									<img
+										t-att-src="kanban_image('sale.vehicle', 'vehicle_image', record.id.value)" />
+								</div>
+								<div class="oe_kanban_details">
+									<strong>
+										<span t-if="record.name.value">
+											[
+											<field name="name" />
+											]
+										</span>
+										<ul>
+											<li>
+												Number :
+												<field name="vehicle_no" />
+											</li>
+												<li>
+												Owner :
+												<field name="owner_id" />
+											</li>
+										</ul>
+									</strong>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+		<record id="vehicle_template_action"
+			model="ir.actions.act_window">
+			<field name="name">Vehicle</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">vehicle.info</field>
+			<field name="view_mode">kanban,tree,form</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="vehicle_template_kanban_view" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a new Vehicle.
+				</p>
+			</field>
+		</record>
+
+		<menuitem id="main_transportation_vehicle_creation_menu"
+			name="Vehicles" parent="menu_petrol_station_config"
+			action="vehicle_template_action" sequence="15" />
+
+	</data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+      <record id="res_partner_transport_inherit" model="ir.ui.view">
+         <field name="name">res.partner.transport.inherit</field>
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="base.view_partner_form" />
+         <field name="arch" type="xml">
+            <field name="lang" position="after">
+               <field name="pan_number"
+                     attrs="{'required': [('company_type','=', 'company')]}"/>
+               <button name="action_check_pan"
+                     string="Check PAN" type="object"
+                     class="oe_highlight"
+                     attrs="{'invisible': [('pan_number','=',False)]}"/>
+            </field>
+         </field>
+      </record>
+
+      		<!--Inherit Res Partner Tree view -->
+		<record id="res_partner_inherit_tree_view" model="ir.ui.view">
+			<field name="name">res.partner.inherit.tree.view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='phone']" position="before">
+					<field name="street_name"/>
+					<field name="pan_number"/>
+				</xpath>
+               <xpath expr="//field[@name='email']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+			</field>
+		</record>
+
+   </data>
+</odoo>

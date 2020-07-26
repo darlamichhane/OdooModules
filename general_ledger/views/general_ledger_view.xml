@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="general_ledger_qweb_view" model="ir.ui.view">
+		<field name="name">General Ledger Report</field>
+		<field name="model">general.ledger.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="date_from" />
+						<field name="group_id" options="{'no_create': True, 'no_create_edit':True}" />
+					</group>
+					<group>
+						<field name="date_to" />
+					</group>
+				</group>
+				<footer>
+					<button name="check_report" string="Print" type="object"
+						default_focus="1" class="oe_highlight" />
+					or
+					<button string="Cancel" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_general_ledger_wizard" model="ir.actions.act_window">
+		<field name="name">General Ledger Report</field>
+		<field name="res_model">general.ledger.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="general_ledger_qweb_view" />
+		<field name="target">new</field>
+	</record>
+
+
+	<menuitem id="menu_general_ledger_qweb" name="General Ledger Account Group"
+		action="action_general_ledger_wizard" parent="account.menu_finance_legal_statement"
+		groups="account.group_account_manager,account.group_account_user" />
+</odoo>
